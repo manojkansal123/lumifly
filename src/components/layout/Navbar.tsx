@@ -18,7 +18,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-solar-dark hover:text-solar-orange transition-colors">Home</Link>
-          <Link to="/#about" className="text-solar-dark hover:text-solar-orange transition-colors">About</Link>
+          <Link to="/about" className="text-solar-dark hover:text-solar-orange transition-colors">About Us</Link>
           <Link to="/#benefits" className="text-solar-dark hover:text-solar-orange transition-colors">Benefits</Link>
           <Link to="/#how-it-works" className="text-solar-dark hover:text-solar-orange transition-colors">How It Works</Link>
           <Link to="/#contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
           <div className="flex flex-col space-y-3 py-4 px-6">
             <Link to="/" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <Link to="/#about" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>About</Link>
+            <Link to="/about" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>About Us</Link>
             <Link to="/#benefits" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
             <Link to="/#how-it-works" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
             <Link to="/#contact" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>

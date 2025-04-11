@@ -19,9 +19,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-solar-dark hover:text-solar-orange transition-colors">Home</Link>
           <Link to="/about" className="text-solar-dark hover:text-solar-orange transition-colors">About Us</Link>
-          <Link to="/#benefits" className="text-solar-dark hover:text-solar-orange transition-colors">Benefits</Link>
-          <Link to="/#how-it-works" className="text-solar-dark hover:text-solar-orange transition-colors">How It Works</Link>
-          <Link to="/#contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
+          <Link to="/benefits" className="text-solar-dark hover:text-solar-orange transition-colors">Benefits</Link>
+          <Link to="/how-it-works" className="text-solar-dark hover:text-solar-orange transition-colors">How It Works</Link>
+          <Link to="/contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
           <Button className="bg-solar-yellow hover:bg-solar-orange text-white">Get Started</Button>
         </div>
         
@@ -40,9 +40,9 @@ const Navbar = () => {
           <div className="flex flex-col space-y-3 py-4 px-6">
             <Link to="/" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link to="/about" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>About Us</Link>
-            <Link to="/#benefits" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
-            <Link to="/#how-it-works" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
-            <Link to="/#contact" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+            <Link to="/benefits" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
+            <Link to="/how-it-works" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+            <Link to="/contact" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             <Button className="bg-solar-yellow hover:bg-solar-orange text-white w-full mt-2" onClick={() => setIsMenuOpen(false)}>Get Started</Button>
           </div>
         </div>

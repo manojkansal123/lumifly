@@ -1,5 +1,35 @@
 
-import { CheckCircle, DollarSign, TreeDeciduous, Battery, Clock, Award, Users } from 'lucide-react';
+import { CheckCircle, Sparkles, Leaf, Home, Shield, Building, Clock, Zap } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Custom animated icon container component
+const AnimatedIconContainer = ({ 
+  bgColor, 
+  children, 
+  className = "" 
+}: { 
+  bgColor: string; 
+  children: React.ReactNode; 
+  className?: string;
+}) => {
+  return (
+    <div 
+      className={cn(
+        "rounded-full p-3 w-20 h-20 flex items-center justify-center mb-6 relative overflow-hidden group", 
+        className
+      )}
+      style={{
+        background: `linear-gradient(135deg, ${bgColor}30 0%, ${bgColor}15 100%)`,
+        boxShadow: `0 5px 15px ${bgColor}20`
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-300">
+        {children}
+      </div>
+    </div>
+  );
+};
 
 const BenefitsSection = () => {
   return (
@@ -16,9 +46,9 @@ const BenefitsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Benefit Card 1 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-yellow/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <DollarSign size={28} className="text-solar-yellow" />
-            </div>
+            <AnimatedIconContainer bgColor="#f97316">
+              <Sparkles size={36} className="text-solar-yellow fill-solar-yellow/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">Free Energy Units</h3>
             <p className="text-gray-600">
               Get up to 150 units of free electricity every month. That's significant savings on your power bill.
@@ -41,9 +71,9 @@ const BenefitsSection = () => {
 
           {/* Benefit Card 2 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-green/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <TreeDeciduous size={28} className="text-solar-green" />
-            </div>
+            <AnimatedIconContainer bgColor="#10b981">
+              <Leaf size={36} className="text-solar-green fill-solar-green/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">Environmental Impact</h3>
             <p className="text-gray-600">
               Reduce your carbon footprint and contribute to a cleaner environment with renewable energy.
@@ -66,9 +96,9 @@ const BenefitsSection = () => {
 
           {/* Benefit Card 3 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-blue/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <Award size={28} className="text-solar-blue" />
-            </div>
+            <AnimatedIconContainer bgColor="#0ea5e9">
+              <Home size={36} className="text-solar-blue fill-solar-blue/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">No Installation Needed</h3>
             <p className="text-gray-600">
               Benefit from solar without installing panels on your property. No maintenance or upfront costs.
@@ -91,9 +121,9 @@ const BenefitsSection = () => {
 
           {/* Benefit Card 4 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-orange/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <Battery size={28} className="text-solar-orange" />
-            </div>
+            <AnimatedIconContainer bgColor="#f97316">
+              <Shield size={36} className="text-solar-orange fill-solar-orange/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">Energy Security</h3>
             <p className="text-gray-600">
               Protect yourself from rising energy costs and grid outages with local renewable power.
@@ -116,9 +146,9 @@ const BenefitsSection = () => {
 
           {/* Benefit Card 5 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-yellow/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <Users size={28} className="text-solar-yellow" />
-            </div>
+            <AnimatedIconContainer bgColor="#f97316">
+              <Building size={36} className="text-solar-yellow fill-solar-yellow/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">Community Support</h3>
             <p className="text-gray-600">
               Strengthen your local community by supporting local jobs and shared infrastructure.
@@ -141,9 +171,9 @@ const BenefitsSection = () => {
 
           {/* Benefit Card 6 */}
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <div className="rounded-full bg-solar-blue/20 p-3 w-16 h-16 flex items-center justify-center mb-6">
-              <Clock size={28} className="text-solar-blue" />
-            </div>
+            <AnimatedIconContainer bgColor="#0ea5e9">
+              <Zap size={36} className="text-solar-blue fill-solar-blue/10" strokeWidth={1.5} />
+            </AnimatedIconContainer>
             <h3 className="text-xl font-bold text-solar-dark mb-3">Simple Signup Process</h3>
             <p className="text-gray-600">
               Getting started is easy with our streamlined enrollment process and dedicated support team.

@@ -62,7 +62,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start">
                 <MapPin className="h-5 w-5 text-lumifly-gold mr-2 mt-1 flex-shrink-0" />
-                <span className="text-gray-300">123 Solar Street, Sunshine City, SC 12345</span>
+                <span className="text-gray-200">123 Solar Street, Sunshine City, SC 12345</span>
               </div>
               <div className="flex items-center">
                 <Phone className="h-5 w-5 text-lumifly-gold mr-2 flex-shrink-0" />

@@ -8,7 +8,7 @@ const AboutSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-lumifly-navy mb-4">About Our Community Solar</h2>
           <div className="w-24 h-1 bg-lumifly-gold mx-auto"></div>
-          <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-gray-700 max-w-2xl mx-auto">
             We're bringing the power of solar energy to communities while making clean energy accessible to everyone.
           </p>
         </div>
@@ -30,7 +30,7 @@ const AboutSection = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-lumifly-navy mb-6">
               Empowering Communities with Free Solar Energy
             </h3>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-700 mb-8">
               Our mission is to make renewable energy accessible to everyone. We build community solar farms that generate clean energy and share the benefits with local residents. By joining our community solar program, you get free energy up to 150 units every month and contribute to a more sustainable future.
             </p>
 
@@ -41,7 +41,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lumifly-navy mb-1">Clean Energy</h4>
-                  <p className="text-gray-600 text-sm">100% renewable solar power with zero emissions</p>
+                  <p className="text-gray-700 text-sm">100% renewable solar power with zero emissions</p>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lumifly-navy mb-1">Community Focused</h4>
-                  <p className="text-gray-600 text-sm">Solar farms built by and for local communities</p>
+                  <p className="text-gray-700 text-sm">Solar farms built by and for local communities</p>
                 </div>
               </div>
 
@@ -61,7 +61,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lumifly-navy mb-1">Free Energy</h4>
-                  <p className="text-gray-600 text-sm">Up to 150 units free for every customer</p>
+                  <p className="text-gray-700 text-sm">Up to 150 units free for every customer</p>
                 </div>
               </div>
 
@@ -71,7 +71,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-lumifly-navy mb-1">Eco-Friendly</h4>
-                  <p className="text-gray-600 text-sm">Reducing carbon footprint and fighting climate change</p>
+                  <p className="text-gray-700 text-sm">Reducing carbon footprint and fighting climate change</p>
                 </div>
               </div>
             </div>

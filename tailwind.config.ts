@@ -28,12 +28,13 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
-        solar: {
-          yellow: '#FFB400',
-          orange: '#F97316',
-          green: '#22C55E',
-          blue: '#0EA5E9',
-          dark: '#1E293B',
+        lumifly: {
+          navy: '#1A2B47',    // Dark blue from logo
+          blue: '#3A80D1',    // Light blue from solar panels
+          gold: '#FFB400',    // Yellow/gold from center
+          purple: '#9b87f5',  // Purple accent
+          pink: '#D946EF',    // Pink accent
+          light: '#F4F7FF',   // Light color for text on dark bg
         },
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',

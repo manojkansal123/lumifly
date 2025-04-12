@@ -1,28 +1,29 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sun, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LumiflyLogo from '@/components/ui/lumifly-logo';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-b border-gray-100 py-3 px-4 md:px-6 fixed w-full top-0 z-50">
+    <nav className="bg-background border-b border-border py-3 px-4 md:px-6 fixed w-full top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <Sun className="h-8 w-8 text-solar-yellow mr-2" />
-          <span className="font-bold text-xl text-solar-dark">SunnyFree</span>
+          <LumiflyLogo className="h-9 w-9 mr-2" />
+          <span className="font-bold text-xl text-foreground">Lumifly Energies</span>
         </div>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-solar-dark hover:text-solar-orange transition-colors">Home</Link>
-          <Link to="/about" className="text-solar-dark hover:text-solar-orange transition-colors">About Us</Link>
-          <Link to="/benefits" className="text-solar-dark hover:text-solar-orange transition-colors">Benefits</Link>
-          <Link to="/how-it-works" className="text-solar-dark hover:text-solar-orange transition-colors">How It Works</Link>
-          <Link to="/contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
-          <Button className="bg-solar-yellow hover:bg-solar-orange text-white">Get Started</Button>
+          <Link to="/" className="text-foreground hover:text-lumifly-purple transition-colors">Home</Link>
+          <Link to="/about" className="text-foreground hover:text-lumifly-purple transition-colors">About Us</Link>
+          <Link to="/benefits" className="text-foreground hover:text-lumifly-purple transition-colors">Benefits</Link>
+          <Link to="/how-it-works" className="text-foreground hover:text-lumifly-purple transition-colors">How It Works</Link>
+          <Link to="/contact" className="text-foreground hover:text-lumifly-purple transition-colors">Contact</Link>
+          <Button className="bg-lumifly-gold hover:bg-lumifly-purple text-white">Get Started</Button>
         </div>
         
         {/* Mobile menu button */}

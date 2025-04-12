@@ -7,8 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -302,228 +300,38 @@ const Contact = () => {
         </section>
 
         {/* FAQ Categories */}
-        <section className="py-12 md:py-20 bg-gray-50" id="faqs">
+        <section className="py-12 md:py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-solar-dark mb-4">Common Questions</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
               <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                Find answers to frequently asked questions about our solar energy program.
+                Find answers to frequently asked questions or reach out to us for specific inquiries.
               </p>
             </div>
             
-            <div className="max-w-4xl mx-auto">
-              <Tabs defaultValue="credits" className="w-full">
-                <TabsList className="flex w-full mb-8 bg-gray-100 p-1 rounded-lg h-auto flex-wrap">
-                  <TabsTrigger value="credits" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    Energy Credits
-                  </TabsTrigger>
-                  <TabsTrigger value="billing" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    Billing & Fees
-                  </TabsTrigger>
-                  <TabsTrigger value="program" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    Program Details
-                  </TabsTrigger>
-                  <TabsTrigger value="technical" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    Technical Information
-                  </TabsTrigger>
-                  <TabsTrigger value="account" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    Account Management
-                  </TabsTrigger>
-                </TabsList>
-                <div className="bg-white rounded-lg shadow-lg p-6">
-                  {/* Energy Credits Tab */}
-                  <TabsContent value="credits" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">Energy Credits Information</h3>
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="credits-1">
-                        <AccordionTrigger className="text-left">
-                          How much Energy is credited to my account?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Here's how solar credits work: You get credits based on the portion of the solar farm you've reserved. So, if you've reserved 2 kW out of a 10 kW farm, and it produces 10 units, you'll be credited for 2 units.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="credits-2">
-                        <AccordionTrigger className="text-left">
-                          How will the Energy be credited to my account?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Your solar energy credits will appear directly on your regular electricity bill, provided by your Distribution Company (DISCOM). These credits will then reduce the amount you owe on your bill.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="credits-3">
-                        <AccordionTrigger className="text-left">
-                          What if I consume more than energy generated?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          When your energy consumption is higher than your solar generation, your solar credits are applied to reduce your bill. You'll only be charged by the utility for the remaining units. For example, if you use 12 units and have 10 units of solar credit, you'll pay for 2 units.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="credits-4">
-                        <AccordionTrigger className="text-left">
-                          What if energy generation is higher than consumption?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          When your solar energy generation exceeds your consumption, the surplus is banked as energy credits to offset your upcoming electricity bills. Any remaining banked credits at the end of the year will be settled by the utility at the average power purchase rates.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="credits-5">
-                        <AccordionTrigger className="text-left">
-                          Are my monthly energy credits constant?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Solar electricity output is directly proportional to the sunlight that an area receives. Therefore, monthly credits is an annualised average of credits generated. Therefore there are going to be months, typically in monsoon where fewer credits are generated and in summers the power production is going to be higher.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </TabsContent>
-                  
-                  {/* Billing & Fees Tab */}
-                  <TabsContent value="billing" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">Billing & Fees Information</h3>
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="billing-1">
-                        <AccordionTrigger className="text-left">
-                          What is the service Fee?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          To ensure the long-term performance of your solar plant, we charge a service fee of ₹1 per unit of solar energy delivered to your account. This fee covers all necessary repairs and maintenance for the next 25 years. To give you an idea of the cost savings, typical rooftop solar maintenance costs around ₹2.5 per unit.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="billing-2">
-                        <AccordionTrigger className="text-left">
-                          Are there any additional or hidden fees?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Absolutely not. There are no hidden or additional charges whatsoever.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="billing-3">
-                        <AccordionTrigger className="text-left">
-                          For a residential user is installing solar on roof or Lumifly better?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Even for those with ample roof space, Lumifly Solar offers a more convenient and cost-effective solution. Traditional rooftop solar (RTS) systems require significant maintenance and generate electricity at Rs. 2-2.5 per unit. In contrast, Lumifly generates electricity at just Rs. 1 per unit and takes care of all maintenance, offering you an effortless and cost-effective solar solution.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </TabsContent>
-                  
-                  {/* Program Details Tab */}
-                  <TabsContent value="program" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">Program Information</h3>
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="program-1">
-                        <AccordionTrigger className="text-left">
-                          What is digital solar?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Digital Solar is a service that enables residential individuals and groups to reserve solar capacity from commercial scale pay-for-use solar projects to trade power for bill credits, and in doing so, allows individuals to use these credits to save up on their power bills.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="program-2">
-                        <AccordionTrigger className="text-left">
-                          What is Virtual Net Metering?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Virtual Net Metering (VNM) allows multiple consumers to benefit from a shared solar power system, even if it's not located on their property. The generated energy is fed into the grid, and credits are distributed among subscribers, reducing their electricity bills.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="program-3">
-                        <AccordionTrigger className="text-left">
-                          What is the duration of the contract?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          The contract is for a period of 25 years.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="program-4">
-                        <AccordionTrigger className="text-left">
-                          What are my options at the end of the 25-year contract?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          At the end of the 25-year contract, you have two options:
-                          <ol className="list-decimal pl-5 mt-2 space-y-1">
-                            <li>You can choose to extend the contract with Lumifly under mutually agreed-upon terms.</li>
-                            <li>Alternatively, you can receive a refund equivalent to 2% of your initial investment.</li>
-                          </ol>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </TabsContent>
-                  
-                  {/* Technical Information Tab */}
-                  <TabsContent value="technical" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">Technical Details</h3>
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="technical-1">
-                        <AccordionTrigger className="text-left">
-                          Where is the solar plant installed?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          It can be anywhere within the discom limits of the consumer.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="technical-2">
-                        <AccordionTrigger className="text-left">
-                          Where are these solar capacity installed?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          These Solar Projects can be installed in various locations in India where net metering and RESCO projects are permissible.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="technical-3">
-                        <AccordionTrigger className="text-left">
-                          How is my reservation secured?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          There are two levels of safeguarding within Lumifly; For hardware and asset protection the projects are insured and have warranty covers. For the performance and upkeep of the solar system, each project has a secured generation value, wherein if power output dips below the value, users will be proportionately compensated as per your agreement.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="technical-4">
-                        <AccordionTrigger className="text-left">
-                          Do I need any approval from my DISCOM to use your service?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          Yes, you will need approval from your DISCOM to use our solar power service. But don't worry—we handle all the paperwork and approvals with the DISCOM on your behalf.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </TabsContent>
-                  
-                  {/* Account Management Tab */}
-                  <TabsContent value="account" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">Account Management</h3>
-                    <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="account-1">
-                        <AccordionTrigger className="text-left">
-                          How much solar can I reserve?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          You can reserve up to the maximum of your sanctioned load capacity.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="account-2">
-                        <AccordionTrigger className="text-left">
-                          Can I extend my solar in future?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          You can always extend or add more solar capacity, up to your sanctioned load limit.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="account-3">
-                        <AccordionTrigger className="text-left">
-                          What happens if I shift house?
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          No problem! If you move within the DISCOM's service area, your accumulated and future solar credits can be transferred to your new account. Please contact us to initiate the transfer process. Please note: This transfer can be processed only once per calendar year.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </TabsContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {faqCategories.map((category, index) => (
+                <div key={index} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center mb-4">
+                    <div className="bg-solar-yellow/10 p-3 rounded-full mr-4">
+                      {category.icon}
+                    </div>
+                    <h3 className="font-bold text-xl text-solar-dark">{category.title}</h3>
+                  </div>
+                  <ul className="space-y-2 text-gray-600 mb-6">
+                    {category.questions.map((question, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="text-solar-yellow mr-2">•</span>
+                        <span>{question}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to="/how-it-works#faqs" className="text-solar-orange font-semibold hover:underline">
+                    View all FAQs →
+                  </Link>
                 </div>
-              </Tabs>
+              ))}
             </div>
           </div>
         </section>

@@ -4,7 +4,7 @@ import { Sun, ChevronRight } from 'lucide-react';
 
 const CTASection = () => {
   return (
-    <section className="bg-lumifly-navy py-16 md:py-20 overflow-hidden relative">
+    <section className="bg-solar-dark py-16 md:py-20 overflow-hidden relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg width="100%" height="100%">

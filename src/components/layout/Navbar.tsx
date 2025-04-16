@@ -1,10 +1,14 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white border-b border-gray-100 py-3 px-4 md:px-6 fixed w-full top-0 z-50">
@@ -25,7 +29,25 @@ const Navbar = () => {
           <Link to="/benefits" className="text-solar-dark hover:text-solar-orange transition-colors">Benefits</Link>
           <Link to="/how-it-works" className="text-solar-dark hover:text-solar-orange transition-colors">How It Works</Link>
           <Link to="/contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
-          <Button className="bg-solar-yellow hover:bg-solar-orange text-white">Get Started</Button>
+          
+          {isAuthenticated ? (
+            <Button 
+              className="bg-solar-yellow hover:bg-solar-orange text-white"
+              onClick={() => navigate("/dashboard")}
+            >
+              Dashboard
+            </Button>
+          ) : (
+            <>
+              <Link to="/signin" className="text-solar-dark hover:text-solar-orange transition-colors">Sign In</Link>
+              <Button 
+                className="bg-solar-yellow hover:bg-solar-orange text-white"
+                onClick={() => navigate("/signup")}
+              >
+                Get Started
+              </Button>
+            </>
+          )}
         </div>
         
         {/* Mobile menu button */}
@@ -46,7 +68,31 @@ const Navbar = () => {
             <Link to="/benefits" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Benefits</Link>
             <Link to="/how-it-works" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
             <Link to="/contact" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
-            <Button className="bg-solar-yellow hover:bg-solar-orange text-white w-full mt-2" onClick={() => setIsMenuOpen(false)}>Get Started</Button>
+            
+            {isAuthenticated ? (
+              <Button 
+                className="bg-solar-yellow hover:bg-solar-orange text-white w-full"
+                onClick={() => {
+                  navigate("/dashboard");
+                  setIsMenuOpen(false);
+                }}
+              >
+                Dashboard
+              </Button>
+            ) : (
+              <>
+                <Link to="/signin" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
+                <Button 
+                  className="bg-solar-yellow hover:bg-solar-orange text-white w-full"
+                  onClick={() => {
+                    navigate("/signup");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}

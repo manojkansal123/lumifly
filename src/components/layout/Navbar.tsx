@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sun, Menu, X } from 'lucide-react';
+import { Moon, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -11,8 +10,8 @@ const Navbar = () => {
     <nav className="bg-white border-b border-gray-100 py-3 px-4 md:px-6 fixed w-full top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <Sun className="h-8 w-8 text-solar-yellow mr-2" />
-          <span className="font-bold text-xl text-solar-dark">SunnyFree</span>
+          <Moon className="h-8 w-8 text-lumifly-purple mr-2" />
+          <span className="font-bold text-xl text-lumifly-navy">Lumifly</span>
         </div>
         
         {/* Desktop Navigation */}

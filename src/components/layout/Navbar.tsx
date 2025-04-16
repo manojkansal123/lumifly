@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Moon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -10,7 +10,11 @@ const Navbar = () => {
     <nav className="bg-white border-b border-gray-100 py-3 px-4 md:px-6 fixed w-full top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <Moon className="h-8 w-8 text-lumifly-purple mr-2" />
+          <img 
+            src="/lovable-uploads/f24cd895-98e0-49fa-b35b-d6541b7d9521.png" 
+            alt="Lumifly Logo" 
+            className="h-10 w-10 mr-2" 
+          />
           <span className="font-bold text-xl text-lumifly-navy">Lumifly</span>
         </div>
         

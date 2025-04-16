@@ -1,4 +1,4 @@
-import { Moon, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -8,11 +8,15 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <Moon className="h-8 w-8 text-lumifly-purple mr-2" />
+              <img 
+                src="/lovable-uploads/f24cd895-98e0-49fa-b35b-d6541b7d9521.png" 
+                alt="Lumifly Logo" 
+                className="h-10 w-10 mr-2" 
+              />
               <span className="font-bold text-xl">Lumifly</span>
             </div>
             <p className="text-gray-300 mb-4">
-              Innovative technology solutions empowering businesses and individuals.
+              Innovative solar technology solutions empowering businesses and individuals.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-lumifly-purple transition-colors">

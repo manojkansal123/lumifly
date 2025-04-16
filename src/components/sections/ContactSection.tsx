@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +26,10 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, this would send the data to a server
-    alert('Thank you for your message! We will get back to you soon.');
+    toast({
+      title: "Message Sent",
+      description: "Thank you for your message! We will get back to you soon.",
+    });
     setFormData({
       name: '',
       email: '',
@@ -44,9 +49,9 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Contact Information */}
-          <div className="lg:col-span-2 bg-solar-dark text-white rounded-lg p-8 relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact Information - Left Side */}
+          <div className="bg-solar-dark text-white rounded-lg p-8 relative overflow-hidden">
             {/* Pattern Background */}
             <div className="absolute inset-0 opacity-5">
               <svg width="100%" height="100%">
@@ -106,8 +111,8 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-3 bg-white rounded-lg shadow-lg p-8">
+          {/* Contact Form - Right Side */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
             <h3 className="text-2xl font-bold text-solar-dark mb-6">Send Us a Message</h3>
             
             <form onSubmit={handleSubmit}>

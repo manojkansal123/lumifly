@@ -25,7 +25,7 @@ const HeroSection = () => {
             <Button size="lg" className="bg-solar-yellow hover:bg-solar-orange text-white font-semibold px-8 text-lg">
               Get Free Solar
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white font-semibold px-8 text-lg bg-green-950 hover:bg-green-800">
+            <Button size="lg" variant="outline" className="bg-solar-yellow hover:bg-solar-orange text-white font-semibold px-8 text-lg">
               Learn More <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

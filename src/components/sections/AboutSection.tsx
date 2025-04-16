@@ -1,5 +1,5 @@
 
-import { Sun, Users, Zap, Leaf } from 'lucide-react';
+import { Sun, Users, Zap, Leaf, Image } from 'lucide-react';
 
 const AboutSection = () => {
   return (
@@ -15,12 +15,18 @@ const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="relative">
+            <div className="relative group">
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-solar-yellow opacity-20 rounded-lg"></div>
               <img 
-                src="https://images.unsplash.com/photo-1559302995-f1d7e5f67f9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
-                alt="Solar panels on a community building" 
-                className="rounded-lg shadow-lg w-full h-auto object-cover relative z-10"
+                src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
+                alt="Community solar farm landscape" 
+                loading="lazy"
+                className="rounded-lg shadow-lg w-full h-auto object-cover relative z-10 group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  const imgElement = e.target as HTMLImageElement;
+                  imgElement.onerror = null;
+                  imgElement.src = '/placeholder.svg';
+                }}
               />
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-solar-blue opacity-20 rounded-lg"></div>
             </div>

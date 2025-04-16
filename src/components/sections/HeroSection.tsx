@@ -1,10 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
 const HeroSection = () => {
-  return (
-    <div className="relative bg-gradient-to-r from-blue-900 to-solar-dark pt-24 pb-16 md:pt-32 md:pb-24">
+  return <div className="relative bg-gradient-to-r from-blue-900 to-solar-dark pt-24 pb-16 md:pt-32 md:pb-24">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMTIxMjEiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0aDR2MWgtNHYtMXptMC0yaDF2NGgtMXYtNHptMi0yaDF2MWgtMXYtMXptLTItMmgxdjFoLTF2LTF6bTQgMGgxdjFoLTF2LTF6bTIgMmgxdjFoLTF2LTF6bS0yIDRoMXYxaC0xdi0xem0wLTJoMXYxaC0xdi0xem0tMi0yaDF2MWgtMXYtMXptLTItMmgxdjFoLTF2LTF6TTM0IDBoMXYxaC0xVjB6bTAgNGgxdjFoLTFWNHptMC0yaDF2MWgtMVYyek0zMiAwaDF2MWgtMVYwem0wIDRoMXYxaC0xVjR6bTAtMmgxdjFoLTFWMnptLTItMmgxdjFoLTFWMHptMCA0aDF2MWgtMVY0em0wLTJoMXYxaC0xVjJ6TTI4IDBoMXYxaC0xVjB6bTAgNGgxdjFoLTFWNHptMC0yaDF2MWgtMVYyek0yNiAwaDF2MWgtMVYwem0wIDRoMXYxaC0xVjR6bTAtMmgxdjFoLTFWMnptLTItMmgxdjFoLTFWMHptMCA0aDF2MWgtMVY0em0wLTJoMXYxaC0xVjJ6TTIyIDBoMXYxaC0xVjB6bTAgNGgxdjFoLTFWNHptMC0yaDF2MWgtMVYyek0yMCAwaDF2MWgtMVYwem0wIDRoMXYxaC0xVjR6bTAtMmgxdjFoLTFWMnptLTItMmgxdjFoLTFWMHptMCA0aDF2MWgtMVY0em0wLTJoMXYxaC0xVjJ6TTE2IDBoMXYxaC0xVjB6bTAgNGgxdjFoLTFWNHptMC0yaDF2MWgtMVYyek0xNCAwaDEydjFIMTRWMHptMCA0aDEydjFIMTRWNHptMC0yaDF2MWgtMVYyem0tMi0yaDF2MWgtMVYwem0wIDRoMXYxaC0xVjR6bTAtMmgxdjFoLTFWMnptLTItMmgxdjFoLTFWMHptMCA0aDF2MWgtMVY0em0wLTJoMXYxaC0xVjJ6TTggMGgxdjFIOFYwem0wIDRoMXYxSDhWNHptMC0yaDF2MUg4VjJ6TTYgMGgxdjFINlYwem0wIDRoMXYxSDZWNHptMC0yaDF2MUg2VjJ6bS0yLTJoMXYxSDRWMHptMCA0aDF2MUg0VjR6bTAtMmgxdjFINFYyek0yIDBoMXYxSDJWMHptMCA0aDF2MUgyVjR6bTAtMmgxdjFIMlYyek0wIDBoMXYxSDBWMHptMCA0aDF2MUgwVjR6bTAtMmgxdjFIMFYyeiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+')] opacity-10"></div>
       
@@ -28,7 +25,7 @@ const HeroSection = () => {
             <Button size="lg" className="bg-solar-yellow hover:bg-solar-orange text-white font-semibold px-8 text-lg">
               Get Free Solar
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-8 text-lg">
+            <Button size="lg" variant="outline" className="border-white text-white font-semibold px-8 text-lg bg-green-950 hover:bg-green-800">
               Learn More <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -50,8 +47,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default HeroSection;

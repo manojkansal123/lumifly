@@ -25,7 +25,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const { toast } = useToast();
 
   useEffect(() => {
-    // Set up auth state listener
+    // Set up auth state listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
@@ -48,7 +48,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     );
 
-    // Check for existing session
+    // Then check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUser({
@@ -75,6 +75,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         setUser(mockUser);
         setIsAuthenticated(true);
+        toast({
+          title: "Welcome back!",
+          description: "You've successfully signed in to the demo account.",
+        });
         return true;
       }
 
@@ -92,6 +96,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return false;
       }
 
+      toast({
+        title: "Welcome back!",
+        description: "You've successfully signed in.",
+      });
       return true;
     } catch (error) {
       console.error("Login failed:", error);
@@ -135,6 +143,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (user?.id === "demo-user") {
       setUser(null);
       setIsAuthenticated(false);
+      toast({
+        title: "Logged out",
+        description: "You've been logged out of the demo account.",
+      });
       return;
     }
 
@@ -144,6 +156,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         title: "Error",
         description: "Failed to log out. Please try again.",
         variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Logged out",
+        description: "You've been successfully logged out.",
       });
     }
     setUser(null);

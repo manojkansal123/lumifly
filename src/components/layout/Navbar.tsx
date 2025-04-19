@@ -7,8 +7,13 @@ import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <nav className="bg-white border-b border-gray-100 py-3 px-4 md:px-6 fixed w-full top-0 z-50">
@@ -31,12 +36,20 @@ const Navbar = () => {
           <Link to="/contact" className="text-solar-dark hover:text-solar-orange transition-colors">Contact</Link>
           
           {isAuthenticated ? (
-            <Button 
-              className="bg-solar-yellow hover:bg-solar-orange text-white"
-              onClick={() => navigate("/dashboard")}
-            >
-              Dashboard
-            </Button>
+            <>
+              <Button 
+                className="bg-solar-yellow hover:bg-solar-orange text-white"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={handleLogout}
+              >
+                Sign Out
+              </Button>
+            </>
           ) : (
             <>
               <Link to="/signin" className="text-solar-dark hover:text-solar-orange transition-colors">Sign In</Link>
@@ -70,15 +83,27 @@ const Navbar = () => {
             <Link to="/contact" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             
             {isAuthenticated ? (
-              <Button 
-                className="bg-solar-yellow hover:bg-solar-orange text-white w-full"
-                onClick={() => {
-                  navigate("/dashboard");
-                  setIsMenuOpen(false);
-                }}
-              >
-                Dashboard
-              </Button>
+              <>
+                <Button 
+                  className="bg-solar-yellow hover:bg-solar-orange text-white w-full"
+                  onClick={() => {
+                    navigate("/dashboard");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Dashboard
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Sign Out
+                </Button>
+              </>
             ) : (
               <>
                 <Link to="/signin" className="text-solar-dark hover:text-solar-orange py-2 transition-colors" onClick={() => setIsMenuOpen(false)}>Sign In</Link>

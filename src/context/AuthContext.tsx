@@ -1,5 +1,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 type User = {
   id: string;
@@ -20,56 +22,108 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const { toast } = useToast();
 
-  // Check if user is already logged in on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem("lumifly_user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
-    }
+    // Set up auth state listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session?.user) {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('id', session.user.id)
+            .single();
+
+          setUser({
+            id: session.user.id,
+            email: session.user.email || '',
+            name: profile?.full_name || 'User'
+          });
+          setIsAuthenticated(true);
+        } else {
+          setUser(null);
+          setIsAuthenticated(false);
+        }
+      }
+    );
+
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email || '',
+          name: session.user.user_metadata.full_name || 'User'
+        });
+        setIsAuthenticated(true);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
-  // Mock login function (replace with actual API call in production)
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      // Mock validation (in production use real auth)
       if (email === "demo@lumifly.com" && password === "password") {
         const mockUser = {
-          id: "user-1",
+          id: "demo-user",
           name: "Demo User",
           email: email
         };
         setUser(mockUser);
         setIsAuthenticated(true);
-        localStorage.setItem("lumifly_user", JSON.stringify(mockUser));
         return true;
       }
-      return false;
+
+      const { error, data } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        toast({
+          title: "Login failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return false;
+      }
+
+      return true;
     } catch (error) {
       console.error("Login failed:", error);
       return false;
     }
   };
 
-  // Mock signup function (replace with actual API call in production)
   const signup = async (name: string, email: string, password: string): Promise<boolean> => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      // Mock signup success (in production use real auth)
-      const mockUser = {
-        id: `user-${Math.random().toString(36).substring(2, 9)}`,
-        name,
-        email
-      };
-      setUser(mockUser);
-      setIsAuthenticated(true);
-      localStorage.setItem("lumifly_user", JSON.stringify(mockUser));
+      const { error, data } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+          },
+        },
+      });
+
+      if (error) {
+        toast({
+          title: "Signup failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return false;
+      }
+
+      toast({
+        title: "Welcome!",
+        description: "Your account has been created successfully.",
+      });
       return true;
     } catch (error) {
       console.error("Signup failed:", error);
@@ -77,10 +131,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    if (user?.id === "demo-user") {
+      setUser(null);
+      setIsAuthenticated(false);
+      return;
+    }
+
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log out. Please try again.",
+        variant: "destructive",
+      });
+    }
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem("lumifly_user");
   };
 
   return (

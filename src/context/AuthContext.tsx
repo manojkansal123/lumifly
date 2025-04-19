@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -67,21 +66,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      if (email === "demo@lumifly.com" && password === "password") {
-        const mockUser = {
-          id: "demo-user",
-          name: "Demo User",
-          email: email
-        };
-        setUser(mockUser);
-        setIsAuthenticated(true);
-        toast({
-          title: "Welcome back!",
-          description: "You've successfully signed in to the demo account.",
-        });
-        return true;
-      }
-
       const { error, data } = await supabase.auth.signInWithPassword({
         email,
         password
@@ -103,6 +87,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return true;
     } catch (error) {
       console.error("Login failed:", error);
+      toast({
+        title: "Login failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
       return false;
     }
   };

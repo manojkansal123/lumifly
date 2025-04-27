@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -74,21 +75,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (error) {
         toast({
           title: "Login failed",
-          description: error.message,
+          description: error.message || "Invalid email or password",
           variant: "destructive",
         });
         return false;
       }
 
+      if (data.user) {
+        toast({
+          title: "Welcome back!",
+          description: "You've successfully signed in.",
+        });
+        return true;
+      }
+
       toast({
-        title: "Welcome back!",
-        description: "You've successfully signed in.",
+        title: "Login failed",
+        description: "Unable to authenticate. Please try again.",
+        variant: "destructive",
       });
-      return true;
+      return false;
     } catch (error) {
       console.error("Login failed:", error);
       toast({
-        title: "Login failed",
+        title: "Login Error",
         description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });

@@ -67,6 +67,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      // Special handling for demo account
+      if (email === "demo@lumifly.com" && password === "password") {
+        // Create a demo user without actually authenticating with Supabase
+        setUser({
+          id: "demo-user",
+          name: "Demo User",
+          email: "demo@lumifly.com"
+        });
+        setIsAuthenticated(true);
+        toast({
+          title: "Welcome to demo account!",
+          description: "You've successfully signed in as a demo user.",
+        });
+        return true;
+      }
+
+      // Regular authentication flow for non-demo users
       const { error, data } = await supabase.auth.signInWithPassword({
         email,
         password

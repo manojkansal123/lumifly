@@ -33,7 +33,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   // Text color class based on scroll state
-  const textColorClass = scrolled ? "text-solar-dark" : "text-white";
+  const textColorClass = scrolled ? "text-solar-dark" : "text-black";
   // Make sure nav links are always visible
   const navLinkClass = (isActive: boolean) => {
     return `px-3 py-2 rounded-md text-sm font-medium ${
@@ -41,7 +41,7 @@ const Navbar = () => {
         ? "text-solar-yellow"
         : scrolled
         ? "text-gray-800 hover:text-solar-yellow"
-        : "text-white hover:text-solar-yellow shadow-text"
+        : "text-black hover:text-solar-yellow"
     }`;
   };
 
@@ -130,8 +130,7 @@ const Navbar = () => {
                 <>
                   <Link to="/signin">
                     <Button 
-                      variant="ghost" 
-                      className={scrolled ? "text-gray-800 hover:text-solar-yellow" : "text-white hover:text-solar-yellow shadow-text"}
+                      className="bg-solar-yellow hover:bg-solar-orange text-white"
                     >
                       {t("nav.signin")}
                     </Button>
@@ -152,7 +151,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ${
-                scrolled ? "text-gray-800" : "text-white"
+                scrolled ? "text-gray-800" : "text-black"
               }`}
             >
               {isOpen ? (
@@ -212,7 +211,7 @@ const Navbar = () => {
                 <div className="flex flex-col space-y-2">
                   <Link
                     to="/signin"
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100 text-center"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-solar-yellow text-white text-center"
                   >
                     {t("nav.signin")}
                   </Link>

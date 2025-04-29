@@ -15,7 +15,7 @@ const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center gap-1 text-solar-dark dark:text-white shadow-text">
+        <Button variant="ghost" size="sm" className="flex items-center gap-1 text-solar-dark dark:text-white">
           <Globe className="h-4 w-4 mr-1" />
           <span className="hidden md:inline text-inherit">{t("language")}</span>
         </Button>

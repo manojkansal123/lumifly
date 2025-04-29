@@ -1,8 +1,11 @@
 
 import { Button } from '@/components/ui/button';
 import { Sun, ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CTASection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="bg-solar-dark py-16 md:py-20 overflow-hidden relative">
       {/* Background Pattern */}
@@ -24,25 +27,25 @@ const CTASection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Start Saving with Free Solar Energy?
+            {t("cta.title")}
           </h2>
           
           <p className="text-xl text-gray-300 mb-8">
-            Join thousands of satisfied customers who are enjoying free energy up to 150 units every month.
+            {t("cta.subtitle")}
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" className="bg-solar-yellow hover:bg-solar-orange text-white font-semibold px-8 text-lg">
-              Get Started Now
+              {t("cta.button.primary")}
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-8 text-lg">
-              Learn More <ChevronRight className="ml-2 h-5 w-5" />
+              {t("cta.button.secondary")} <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
           
           <div className="mt-8 p-4 bg-white/10 backdrop-blur-sm rounded-lg inline-block">
             <p className="text-white text-sm">
-              No credit checks • No installation needed • Start saving immediately
+              {t("cta.features")}
             </p>
           </div>
         </div>

@@ -34,6 +34,16 @@ const Navbar = () => {
 
   // Text color class based on scroll state
   const textColorClass = scrolled ? "text-solar-dark" : "text-white";
+  // Make sure nav links are always visible
+  const navLinkClass = (isActive: boolean) => {
+    return `px-3 py-2 rounded-md text-sm font-medium ${
+      isActive
+        ? "text-solar-yellow"
+        : scrolled
+        ? "text-gray-800 hover:text-solar-yellow"
+        : "text-white hover:text-solar-yellow shadow-text"
+    }`;
+  };
 
   return (
     <nav
@@ -76,61 +86,31 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-1">
             <Link
               to="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium ${
-                location.pathname === "/"
-                  ? "text-solar-yellow"
-                  : scrolled
-                  ? "text-gray-800 hover:text-solar-yellow"
-                  : "text-white hover:text-solar-yellow"
-              }`}
+              className={navLinkClass(location.pathname === "/")}
             >
               {t("nav.home")}
             </Link>
             <Link
               to="/about"
-              className={`px-3 py-2 rounded-md text-sm font-medium ${
-                location.pathname === "/about"
-                  ? "text-solar-yellow"
-                  : scrolled
-                  ? "text-gray-800 hover:text-solar-yellow"
-                  : "text-white hover:text-solar-yellow"
-              }`}
+              className={navLinkClass(location.pathname === "/about")}
             >
               {t("nav.about")}
             </Link>
             <Link
               to="/benefits"
-              className={`px-3 py-2 rounded-md text-sm font-medium ${
-                location.pathname === "/benefits"
-                  ? "text-solar-yellow"
-                  : scrolled
-                  ? "text-gray-800 hover:text-solar-yellow"
-                  : "text-white hover:text-solar-yellow"
-              }`}
+              className={navLinkClass(location.pathname === "/benefits")}
             >
               {t("nav.benefits")}
             </Link>
             <Link
               to="/how-it-works"
-              className={`px-3 py-2 rounded-md text-sm font-medium ${
-                location.pathname === "/how-it-works"
-                  ? "text-solar-yellow"
-                  : scrolled
-                  ? "text-gray-800 hover:text-solar-yellow"
-                  : "text-white hover:text-solar-yellow"
-              }`}
+              className={navLinkClass(location.pathname === "/how-it-works")}
             >
               {t("nav.howitworks")}
             </Link>
             <Link
               to="/contact"
-              className={`px-3 py-2 rounded-md text-sm font-medium ${
-                location.pathname === "/contact"
-                  ? "text-solar-yellow"
-                  : scrolled
-                  ? "text-gray-800 hover:text-solar-yellow"
-                  : "text-white hover:text-solar-yellow"
-              }`}
+              className={navLinkClass(location.pathname === "/contact")}
             >
               {t("nav.contact")}
             </Link>
@@ -151,7 +131,7 @@ const Navbar = () => {
                   <Link to="/signin">
                     <Button 
                       variant="ghost" 
-                      className={scrolled ? "text-gray-800 hover:text-solar-yellow" : "text-white hover:text-solar-yellow"}
+                      className={scrolled ? "text-gray-800 hover:text-solar-yellow" : "text-white hover:text-solar-yellow shadow-text"}
                     >
                       {t("nav.signin")}
                     </Button>

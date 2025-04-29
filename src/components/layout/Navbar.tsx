@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,9 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  // Text color class based on scroll state
+  const textColorClass = scrolled ? "text-solar-dark" : "text-white";
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -63,7 +67,7 @@ const Navbar = () => {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
               </svg>
             </div>
-            <span className={`font-bold text-xl ${scrolled ? "text-solar-dark" : "text-white"}`}>
+            <span className={`font-bold text-xl ${textColorClass}`}>
               SunnyFree
             </span>
           </Link>
@@ -145,7 +149,10 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link to="/signin">
-                    <Button variant="ghost" className={scrolled ? "text-gray-800" : "text-white"}>
+                    <Button 
+                      variant="ghost" 
+                      className={scrolled ? "text-gray-800 hover:text-solar-yellow" : "text-white hover:text-solar-yellow"}
+                    >
                       {t("nav.signin")}
                     </Button>
                   </Link>

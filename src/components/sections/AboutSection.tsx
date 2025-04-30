@@ -1,15 +1,18 @@
 
 import { Sun, Users, Zap, Leaf, Image } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="about" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">About Our Community Solar</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("about.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            We're bringing the power of solar energy to communities while making clean energy accessible to everyone.
+            {t("about.subtitle")}
           </p>
         </div>
 
@@ -34,10 +37,10 @@ const AboutSection = () => {
 
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-solar-dark mb-6">
-              Empowering Communities with Free Solar Energy
+              {t("about.heading")}
             </h3>
             <p className="text-gray-600 mb-8">
-              Our mission is to make renewable energy accessible to everyone. We build community solar farms that generate clean energy and share the benefits with local residents. By joining our community solar program, you get free energy up to 150 units every month and contribute to a more sustainable future.
+              {t("about.description")}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -46,8 +49,8 @@ const AboutSection = () => {
                   <Sun className="h-6 w-6 text-solar-yellow" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-solar-dark mb-1">Clean Energy</h4>
-                  <p className="text-gray-600 text-sm">100% renewable solar power with zero emissions</p>
+                  <h4 className="font-bold text-solar-dark mb-1">{t("about.feature1.title")}</h4>
+                  <p className="text-gray-600 text-sm">{t("about.feature1.description")}</p>
                 </div>
               </div>
 
@@ -56,8 +59,8 @@ const AboutSection = () => {
                   <Users className="h-6 w-6 text-solar-green" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-solar-dark mb-1">Community Focused</h4>
-                  <p className="text-gray-600 text-sm">Solar farms built by and for local communities</p>
+                  <h4 className="font-bold text-solar-dark mb-1">{t("about.feature2.title")}</h4>
+                  <p className="text-gray-600 text-sm">{t("about.feature2.description")}</p>
                 </div>
               </div>
 
@@ -66,8 +69,8 @@ const AboutSection = () => {
                   <Zap className="h-6 w-6 text-solar-orange" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-solar-dark mb-1">Free Energy</h4>
-                  <p className="text-gray-600 text-sm">Up to 150 units free for every customer</p>
+                  <h4 className="font-bold text-solar-dark mb-1">{t("about.feature3.title")}</h4>
+                  <p className="text-gray-600 text-sm">{t("about.feature3.description")}</p>
                 </div>
               </div>
 
@@ -76,8 +79,8 @@ const AboutSection = () => {
                   <Leaf className="h-6 w-6 text-solar-blue" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-solar-dark mb-1">Eco-Friendly</h4>
-                  <p className="text-gray-600 text-sm">Reducing carbon footprint and fighting climate change</p>
+                  <h4 className="font-bold text-solar-dark mb-1">{t("about.feature4.title")}</h4>
+                  <p className="text-gray-600 text-sm">{t("about.feature4.description")}</p>
                 </div>
               </div>
             </div>

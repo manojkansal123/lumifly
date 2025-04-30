@@ -1,30 +1,33 @@
 
 import { CircleChevronRight } from 'lucide-react';
+import { useLanguage } from "@/context/LanguageContext";
 
 const HowItWorksSection = () => {
+  const { t } = useLanguage();
+  
   const steps = [
     {
       number: "01",
-      title: "Sign Up",
-      description: "Fill out our simple form to join our community solar program. No credit check or upfront costs required.",
+      title: t("howitworks.step1.title"),
+      description: t("howitworks.step1.description"),
       color: "yellow"
     },
     {
       number: "02",
-      title: "We Build Solar",
-      description: "We build and maintain community solar farms in your area, generating clean renewable energy.",
+      title: t("howitworks.step2.title"),
+      description: t("howitworks.step2.description"),
       color: "orange"
     },
     {
       number: "03",
-      title: "Energy Production",
-      description: "The solar farms produce electricity that flows into the local power grid, powering homes and businesses.",
+      title: t("howitworks.step3.title"),
+      description: t("howitworks.step3.description"),
       color: "green"
     },
     {
       number: "04",
-      title: "Get Free Units",
-      description: "You receive up to 150 free energy units every month, credited directly to your regular utility bill.",
+      title: t("howitworks.step4.title"),
+      description: t("howitworks.step4.description"),
       color: "blue"
     }
   ];
@@ -33,10 +36,10 @@ const HowItWorksSection = () => {
     <section id="how-it-works" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("howitworks.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Our process is simple and straightforward, allowing you to benefit from solar energy without any hassle.
+            {t("howitworks.subtitle")}
           </p>
         </div>
 

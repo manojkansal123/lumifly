@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CalculatorSection = () => {
+  const { t } = useLanguage();
   const [averageMonthlyBill, setAverageMonthlyBill] = useState<number>(150);
   const [monthlyConsumption, setMonthlyConsumption] = useState<number>(300);
   
@@ -22,10 +24,10 @@ const CalculatorSection = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">Savings Calculator</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("calculator.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            See how much you could save with our free solar energy program.
+            {t("calculator.subtitle")}
           </p>
         </div>
 

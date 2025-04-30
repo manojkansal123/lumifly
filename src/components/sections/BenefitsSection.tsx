@@ -1,6 +1,7 @@
 
 import { CheckCircle, Sparkles, Leaf, Home, Shield, Building, Clock, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Custom animated icon container component
 const AnimatedIconContainer = ({ 
@@ -32,14 +33,16 @@ const AnimatedIconContainer = ({
 };
 
 const BenefitsSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="benefits" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">Benefits of Our Solar Program</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("benefits.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who are enjoying free clean energy and contributing to a more sustainable future.
+            {t("benefits.subtitle")}
           </p>
         </div>
 

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const testimonials = [
   {
@@ -55,6 +56,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const visibleTestimonials = testimonials.slice(activeIndex, activeIndex + 3);
 
@@ -78,10 +80,10 @@ const TestimonialsSection = () => {
     <section id="testimonials" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">What Our Customers Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("testimonials.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear from some of our customers who are enjoying free energy and supporting renewable power.
+            {t("testimonials.subtitle")}
           </p>
         </div>
 

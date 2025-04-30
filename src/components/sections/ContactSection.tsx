@@ -5,8 +5,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from '@/context/LanguageContext';
 
 const ContactSection = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -42,10 +44,10 @@ const ContactSection = () => {
     <section id="contact" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">Contact Us</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("contact.title")}</h2>
           <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions about our free energy program? Get in touch with our team.
+            {t("contact.subtitle")}
           </p>
         </div>
 

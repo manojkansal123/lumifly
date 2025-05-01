@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -8,11 +9,8 @@ import { Mail, Phone, MapPin, Send, MessageSquare, Clock, HelpCircle } from 'luc
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { useLanguage } from '@/context/LanguageContext';
 
 const Contact = () => {
-  const { t } = useLanguage();
-  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,7 +30,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, this would send the data to a server
-    alert(t("contact.page.form.successAlert"));
+    alert('Thank you for your message! We will get back to you soon.');
     setFormData({
       name: '',
       email: '',
@@ -44,30 +42,30 @@ const Contact = () => {
 
   const faqCategories = [
     {
-      title: t("contact.page.faq.programQuestions"),
+      title: "Program Questions",
       icon: <HelpCircle className="h-6 w-6 text-solar-yellow" />,
       questions: [
-        t("contact.page.faq.program.q1"),
-        t("contact.page.faq.program.q2"),
-        t("contact.page.faq.program.q3")
+        "How does the program work?",
+        "How many free units can I get?",
+        "Am I eligible for the program?"
       ]
     },
     {
-      title: t("contact.page.faq.technicalSupport"),
+      title: "Technical Support",
       icon: <MessageSquare className="h-6 w-6 text-solar-orange" />,
       questions: [
-        t("contact.page.faq.technical.q1"),
-        t("contact.page.faq.technical.q2"),
-        t("contact.page.faq.technical.q3")
+        "How do I check my energy credits?",
+        "What if my bill doesn't show credits?",
+        "How is the energy measured?"
       ]
     },
     {
-      title: t("contact.page.faq.enrollment"),
+      title: "Program Enrollment",
       icon: <Clock className="h-6 w-6 text-solar-green" />,
       questions: [
-        t("contact.page.faq.enrollment.q1"),
-        t("contact.page.faq.enrollment.q2"),
-        t("contact.page.faq.enrollment.q3")
+        "How long does enrollment take?",
+        "What documents do I need?",
+        "When will I see my first credits?"
       ]
     }
   ];
@@ -80,9 +78,9 @@ const Contact = () => {
         <section className="bg-gradient-to-b from-solar-yellow/10 to-white py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-solar-dark mb-6">{t("contact.page.title")}</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-solar-dark mb-6">Contact Us</h1>
               <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-                {t("contact.page.subtitle")}
+                Have questions about our free energy program? Our team is here to help you.
               </p>
             </div>
           </div>
@@ -92,10 +90,10 @@ const Contact = () => {
         <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-solar-dark mb-4">{t("contact.page.contactInfo")}</h2>
+              <h2 className="text-3xl font-bold text-solar-dark mb-4">Contact Information</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
               <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                {t("contact.page.contactDescription")}
+                Our team is here to assist you with any questions about our solar energy program.
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -105,7 +103,7 @@ const Contact = () => {
                 <div className="absolute inset-0 opacity-15 mix-blend-overlay">
                   <img 
                     src="/placeholder.svg" 
-                    alt={t("contact.page.teamImageAlt")}
+                    alt="Solar energy team" 
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -130,7 +128,7 @@ const Contact = () => {
                     <div className="bg-solar-yellow rounded-full p-3 mr-4 shadow-lg">
                       <Mail className="h-6 w-6 text-solar-dark" />
                     </div>
-                    <h3 className="text-2xl font-bold">{t("contact.page.getInTouch")}</h3>
+                    <h3 className="text-2xl font-bold">Get In Touch</h3>
                   </div>
                   
                   <div className="space-y-6">
@@ -139,8 +137,8 @@ const Contact = () => {
                         <MapPin className="h-5 w-5 text-solar-dark" />
                       </div>
                       <div>
-                        <h4 className="font-bold">{t("contact.page.locationTitle")}</h4>
-                        <p className="text-gray-200 mt-1">{t("contact.page.address")}</p>
+                        <h4 className="font-bold">Our Location</h4>
+                        <p className="text-gray-200 mt-1">123 Solar Street<br />Sunshine City, SC 12345</p>
                       </div>
                     </div>
 
@@ -149,8 +147,8 @@ const Contact = () => {
                         <Mail className="h-5 w-5 text-solar-dark" />
                       </div>
                       <div>
-                        <h4 className="font-bold">{t("contact.page.emailTitle")}</h4>
-                        <p className="text-gray-200 mt-1">{t("contact.page.emailAddresses")}</p>
+                        <h4 className="font-bold">Email Us</h4>
+                        <p className="text-gray-200 mt-1">info@sunnyfree.com<br />support@sunnyfree.com</p>
                       </div>
                     </div>
 
@@ -159,21 +157,21 @@ const Contact = () => {
                         <Phone className="h-5 w-5 text-solar-dark" />
                       </div>
                       <div>
-                        <h4 className="font-bold">{t("contact.page.phoneTitle")}</h4>
-                        <p className="text-gray-200 mt-1">{t("contact.page.phoneNumbers")}</p>
+                        <h4 className="font-bold">Call Us</h4>
+                        <p className="text-gray-200 mt-1">(123) 456-7890<br />(987) 654-3210</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-white/20">
-                    <h4 className="font-bold mb-3">{t("contact.page.hoursTitle")}</h4>
+                    <h4 className="font-bold mb-3">Hours of Operation</h4>
                     <div className="grid grid-cols-2 gap-2 text-gray-200">
-                      <div>{t("contact.page.weekdays")}</div>
-                      <div>{t("contact.page.weekdaysHours")}</div>
-                      <div>{t("contact.page.saturday")}</div>
-                      <div>{t("contact.page.saturdayHours")}</div>
-                      <div>{t("contact.page.sunday")}</div>
-                      <div>{t("contact.page.sundayHours")}</div>
+                      <div>Monday - Friday:</div>
+                      <div>9:00 AM - 6:00 PM</div>
+                      <div>Saturday:</div>
+                      <div>10:00 AM - 4:00 PM</div>
+                      <div>Sunday:</div>
+                      <div>Closed</div>
                     </div>
                   </div>
                 </div>
@@ -183,8 +181,8 @@ const Contact = () => {
               <div className="lg:col-span-3 bg-white rounded-lg shadow-lg p-8 border-t-4 border-solar-yellow">
                 <div className="flex items-center justify-between mb-8">
                   <div>
-                    <h3 className="text-2xl font-bold text-solar-dark">{t("contact.page.form.title")}</h3>
-                    <p className="text-gray-600 mt-2">{t("contact.page.form.subtitle")}</p>
+                    <h3 className="text-2xl font-bold text-solar-dark">Send Us a Message</h3>
+                    <p className="text-gray-600 mt-2">We'd love to hear from you! Fill out the form below.</p>
                   </div>
                   <div className="hidden md:block">
                     <div className="bg-solar-yellow/10 p-3 rounded-full">
@@ -198,21 +196,21 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        {t("contact.page.form.name")} <span className="text-red-500">*</span>
+                        Your Name <span className="text-red-500">*</span>
                       </label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder={t("contact.page.form.namePlaceholder")}
+                        placeholder="John Doe"
                         required
                         className="w-full border-gray-300 focus:border-solar-yellow focus:ring focus:ring-solar-yellow/20 transition-all"
                       />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        {t("contact.page.form.email")} <span className="text-red-500">*</span>
+                        Email Address <span className="text-red-500">*</span>
                       </label>
                       <Input
                         id="email"
@@ -220,7 +218,7 @@ const Contact = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder={t("contact.page.form.emailPlaceholder")}
+                        placeholder="john@example.com"
                         required
                         className="w-full border-gray-300 focus:border-solar-yellow focus:ring focus:ring-solar-yellow/20 transition-all"
                       />
@@ -231,7 +229,7 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                        {t("contact.page.form.phone")}
+                        Phone Number
                       </label>
                       <Input
                         id="phone"
@@ -239,13 +237,13 @@ const Contact = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder={t("contact.page.form.phonePlaceholder")}
+                        placeholder="(123) 456-7890"
                         className="w-full border-gray-300 focus:border-solar-yellow focus:ring focus:ring-solar-yellow/20 transition-all"
                       />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
-                        {t("contact.page.form.subject")} <span className="text-red-500">*</span>
+                        Subject <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -256,12 +254,12 @@ const Contact = () => {
                           required
                           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 h-10 appearance-none pr-8"
                         >
-                          <option value="">{t("contact.page.form.selectSubject")}</option>
-                          <option value="General Inquiry">{t("contact.page.form.subjects.general")}</option>
-                          <option value="Program Information">{t("contact.page.form.subjects.program")}</option>
-                          <option value="Technical Support">{t("contact.page.form.subjects.technical")}</option>
-                          <option value="Billing Question">{t("contact.page.form.subjects.billing")}</option>
-                          <option value="Feedback">{t("contact.page.form.subjects.feedback")}</option>
+                          <option value="">Select a subject</option>
+                          <option value="General Inquiry">General Inquiry</option>
+                          <option value="Program Information">Program Information</option>
+                          <option value="Technical Support">Technical Support</option>
+                          <option value="Billing Question">Billing Question</option>
+                          <option value="Feedback">Feedback</option>
                         </select>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                           <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -275,26 +273,26 @@ const Contact = () => {
                   {/* Message */}
                   <div className="space-y-2">
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                      {t("contact.page.form.message")} <span className="text-red-500">*</span>
+                      Your Message <span className="text-red-500">*</span>
                     </label>
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder={t("contact.page.form.messagePlaceholder")}
+                      placeholder="How can we help you today?"
                       required
                       className="w-full h-32 border-gray-300 focus:border-solar-yellow focus:ring focus:ring-solar-yellow/20 transition-all"
                     />
                   </div>
                   
                   <div className="flex items-center justify-between pt-2">
-                    <p className="text-sm text-gray-500"><span className="text-red-500">*</span> {t("contact.page.form.required")}</p>
+                    <p className="text-sm text-gray-500"><span className="text-red-500">*</span> Required fields</p>
                     <Button 
                       type="submit" 
                       className="bg-solar-yellow hover:bg-solar-orange text-white px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-200"
                     >
-                      {t("contact.page.form.send")} <Send className="ml-2 h-4 w-4" />
+                      Send Message <Send className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 </form>
@@ -307,10 +305,10 @@ const Contact = () => {
         <section className="py-12 md:py-20 bg-gray-50" id="faqs">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-solar-dark mb-4">{t("contact.page.commonQuestions")}</h2>
+              <h2 className="text-3xl font-bold text-solar-dark mb-4">Common Questions</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
               <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
-                {t("contact.page.faqDescription")}
+                Find answers to frequently asked questions about our solar energy program.
               </p>
             </div>
             
@@ -318,64 +316,64 @@ const Contact = () => {
               <Tabs defaultValue="credits" className="w-full">
                 <TabsList className="flex w-full mb-8 bg-gray-100 p-1 rounded-lg h-auto flex-wrap">
                   <TabsTrigger value="credits" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    {t("contact.page.tabs.credits")}
+                    Energy Credits
                   </TabsTrigger>
                   <TabsTrigger value="billing" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    {t("contact.page.tabs.billing")}
+                    Billing & Fees
                   </TabsTrigger>
                   <TabsTrigger value="program" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    {t("contact.page.tabs.program")}
+                    Program Details
                   </TabsTrigger>
                   <TabsTrigger value="technical" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    {t("contact.page.tabs.technical")}
+                    Technical Information
                   </TabsTrigger>
                   <TabsTrigger value="account" className="flex-1 py-3 data-[state=active]:bg-white data-[state=active]:shadow">
-                    {t("contact.page.tabs.account")}
+                    Account Management
                   </TabsTrigger>
                 </TabsList>
                 <div className="bg-white rounded-lg shadow-lg p-6">
                   {/* Energy Credits Tab */}
                   <TabsContent value="credits" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">{t("contact.page.credits.title")}</h3>
+                    <h3 className="text-xl font-bold text-solar-dark mb-4">Energy Credits Information</h3>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="credits-1">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.credits.q1")}
+                          How much Energy is credited to my account?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.credits.a1")}
+                          Here's how solar credits work: You get credits based on the portion of the solar farm you've reserved. So, if you've reserved 2 kW out of a 10 kW farm, and it produces 10 units, you'll be credited for 2 units.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="credits-2">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.credits.q2")}
+                          How will the Energy be credited to my account?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.credits.a2")}
+                          Your solar energy credits will appear directly on your regular electricity bill, provided by your Distribution Company (DISCOM). These credits will then reduce the amount you owe on your bill.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="credits-3">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.credits.q3")}
+                          What if I consume more than energy generated?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.credits.a3")}
+                          When your energy consumption is higher than your solar generation, your solar credits are applied to reduce your bill. You'll only be charged by the utility for the remaining units. For example, if you use 12 units and have 10 units of solar credit, you'll pay for 2 units.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="credits-4">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.credits.q4")}
+                          What if energy generation is higher than consumption?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.credits.a4")}
+                          When your solar energy generation exceeds your consumption, the surplus is banked as energy credits to offset your upcoming electricity bills. Any remaining banked credits at the end of the year will be settled by the utility at the average power purchase rates.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="credits-5">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.credits.q5")}
+                          Are my monthly energy credits constant?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.credits.a5")}
+                          Solar electricity output is directly proportional to the sunlight that an area receives. Therefore, monthly credits is an annualised average of credits generated. Therefore there are going to be months, typically in monsoon where fewer credits are generated and in summers the power production is going to be higher.
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -383,30 +381,30 @@ const Contact = () => {
                   
                   {/* Billing & Fees Tab */}
                   <TabsContent value="billing" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">{t("contact.page.billing.title")}</h3>
+                    <h3 className="text-xl font-bold text-solar-dark mb-4">Billing & Fees Information</h3>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="billing-1">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.billing.q1")}
+                          What is the service Fee?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.billing.a1")}
+                          To ensure the long-term performance of your solar plant, we charge a service fee of ₹1 per unit of solar energy delivered to your account. This fee covers all necessary repairs and maintenance for the next 25 years. To give you an idea of the cost savings, typical rooftop solar maintenance costs around ₹2.5 per unit.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="billing-2">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.billing.q2")}
+                          Are there any additional or hidden fees?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.billing.a2")}
+                          Absolutely not. There are no hidden or additional charges whatsoever.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="billing-3">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.billing.q3")}
+                          For a residential user is installing solar on roof or Lumifly better?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.billing.a3")}
+                          Even for those with ample roof space, Lumifly Solar offers a more convenient and cost-effective solution. Traditional rooftop solar (RTS) systems require significant maintenance and generate electricity at Rs. 2-2.5 per unit. In contrast, Lumifly generates electricity at just Rs. 1 per unit and takes care of all maintenance, offering you an effortless and cost-effective solar solution.
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -414,44 +412,42 @@ const Contact = () => {
                   
                   {/* Program Details Tab */}
                   <TabsContent value="program" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">{t("contact.page.program.title")}</h3>
+                    <h3 className="text-xl font-bold text-solar-dark mb-4">Program Information</h3>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="program-1">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.program.q1")}
+                          What is digital solar?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.program.a1")}
+                          Digital Solar is a service that enables residential individuals and groups to reserve solar capacity from commercial scale pay-for-use solar projects to trade power for bill credits, and in doing so, allows individuals to use these credits to save up on their power bills.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="program-2">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.program.q2")}
+                          What is Virtual Net Metering?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.program.a2")}
+                          Virtual Net Metering (VNM) allows multiple consumers to benefit from a shared solar power system, even if it's not located on their property. The generated energy is fed into the grid, and credits are distributed among subscribers, reducing their electricity bills.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="program-3">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.program.q3")}
+                          What is the duration of the contract?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.program.a3")}
+                          The contract is for a period of 25 years.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="program-4">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.program.q4")}
+                          What are my options at the end of the 25-year contract?
                         </AccordionTrigger>
                         <AccordionContent>
-                          <div>
-                            {t("contact.page.program.a4")}
-                            <ol className="list-decimal pl-5 mt-2 space-y-1">
-                              <li>{t("contact.page.program.a4.option1")}</li>
-                              <li>{t("contact.page.program.a4.option2")}</li>
-                            </ol>
-                          </div>
+                          At the end of the 25-year contract, you have two options:
+                          <ol className="list-decimal pl-5 mt-2 space-y-1">
+                            <li>You can choose to extend the contract with Lumifly under mutually agreed-upon terms.</li>
+                            <li>Alternatively, you can receive a refund equivalent to 2% of your initial investment.</li>
+                          </ol>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -459,38 +455,38 @@ const Contact = () => {
                   
                   {/* Technical Information Tab */}
                   <TabsContent value="technical" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">{t("contact.page.technical.title")}</h3>
+                    <h3 className="text-xl font-bold text-solar-dark mb-4">Technical Details</h3>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="technical-1">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.technical.q1")}
+                          Where is the solar plant installed?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.technical.a1")}
+                          It can be anywhere within the discom limits of the consumer.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="technical-2">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.technical.q2")}
+                          Where are these solar capacity installed?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.technical.a2")}
+                          These Solar Projects can be installed in various locations in India where net metering and RESCO projects are permissible.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="technical-3">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.technical.q3")}
+                          How is my reservation secured?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.technical.a3")}
+                          There are two levels of safeguarding within Lumifly; For hardware and asset protection the projects are insured and have warranty covers. For the performance and upkeep of the solar system, each project has a secured generation value, wherein if power output dips below the value, users will be proportionately compensated as per your agreement.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="technical-4">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.technical.q4")}
+                          Do I need any approval from my DISCOM to use your service?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.technical.a4")}
+                          Yes, you will need approval from your DISCOM to use our solar power service. But don't worry—we handle all the paperwork and approvals with the DISCOM on your behalf.
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -498,30 +494,30 @@ const Contact = () => {
                   
                   {/* Account Management Tab */}
                   <TabsContent value="account" className="mt-0">
-                    <h3 className="text-xl font-bold text-solar-dark mb-4">{t("contact.page.account.title")}</h3>
+                    <h3 className="text-xl font-bold text-solar-dark mb-4">Account Management</h3>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="account-1">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.account.q1")}
+                          How much solar can I reserve?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.account.a1")}
+                          You can reserve up to the maximum of your sanctioned load capacity.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="account-2">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.account.q2")}
+                          Can I extend my solar in future?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.account.a2")}
+                          You can always extend or add more solar capacity, up to your sanctioned load limit.
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="account-3">
                         <AccordionTrigger className="text-left">
-                          {t("contact.page.account.q3")}
+                          What happens if I shift house?
                         </AccordionTrigger>
                         <AccordionContent>
-                          {t("contact.page.account.a3")}
+                          No problem! If you move within the DISCOM's service area, your accumulated and future solar credits can be transferred to your new account. Please contact us to initiate the transfer process. Please note: This transfer can be processed only once per calendar year.
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -536,15 +532,15 @@ const Contact = () => {
         <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-solar-dark mb-4">{t("contact.page.visitOffice")}</h2>
+              <h2 className="text-3xl font-bold text-solar-dark mb-4">Visit Our Office</h2>
               <p className="text-gray-600">
-                {t("contact.page.visitDescription")}
+                Come by our office to learn more about our solar energy programs.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-lg">
               {/* Replace with an actual map integration if needed */}
               <div className="bg-gray-200 w-full h-[400px] flex items-center justify-center">
-                <p className="text-gray-600">{t("contact.page.mapPlaceholder")}</p>
+                <p className="text-gray-600">Map placeholder - In a real application, an interactive map would be embedded here.</p>
               </div>
             </div>
           </div>
@@ -554,19 +550,19 @@ const Contact = () => {
         <section className="bg-solar-dark py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-white mb-4">{t("contact.page.stayUpdated")}</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
               <p className="text-white/80 mb-8">
-                {t("contact.page.newsletter")}
+                Subscribe to our newsletter for the latest updates on our solar programs, energy tips, and special offers.
               </p>
               <form className="flex flex-col md:flex-row gap-4">
                 <Input 
                   type="email" 
-                  placeholder={t("contact.page.emailPlaceholder")}
+                  placeholder="Enter your email address" 
                   className="flex-grow" 
                   required
                 />
                 <Button type="submit" className="bg-solar-yellow hover:bg-solar-orange text-solar-dark">
-                  {t("contact.page.subscribe")}
+                  Subscribe
                 </Button>
               </form>
             </div>

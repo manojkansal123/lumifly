@@ -78,7 +78,7 @@ const Navbar = () => {
               </svg>
             </div>
             <span className={`font-bold text-xl ${textColorClass}`}>
-              SunnyFree
+              Lumifly
             </span>
           </Link>
 

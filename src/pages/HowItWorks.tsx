@@ -4,34 +4,37 @@ import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { CircleChevronRight, ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 const HowItWorks = () => {
+  const { t } = useLanguage();
+  
   const steps = [
     {
       number: "01",
-      title: "Sign Up",
-      description: "Fill out our simple form to join our community solar program. No credit check or upfront costs required.",
+      title: t("howitworks.step1.title"),
+      description: t("howitworks.step1.description"),
       color: "yellow",
       image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     },
     {
       number: "02",
-      title: "We Build Solar",
-      description: "We build and maintain community solar farms in your area, generating clean renewable energy.",
+      title: t("howitworks.step2.title"),
+      description: t("howitworks.step2.description"),
       color: "orange",
       image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80"
     },
     {
       number: "03",
-      title: "Energy Production",
-      description: "The solar farms produce electricity that flows into the local power grid, powering homes and businesses.",
+      title: t("howitworks.step3.title"),
+      description: t("howitworks.step3.description"),
       color: "green",
       image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80"
     },
     {
       number: "04",
-      title: "Get Free Units",
-      description: "You receive up to 150 free energy units every month, credited directly to your regular utility bill.",
+      title: t("howitworks.step4.title"),
+      description: t("howitworks.step4.description"),
       color: "blue",
       image: "https://images.unsplash.com/photo-1626266061368-46a8f578ddd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
     }
@@ -39,24 +42,24 @@ const HowItWorks = () => {
 
   const faqs = [
     {
-      question: "How does community solar work?",
-      answer: "Community solar allows multiple people to benefit from a single, shared solar array. The solar panels are installed in a sunny location, and the electricity generated is fed into the local power grid. Subscribers receive credits on their electricity bills for their share of the power produced."
+      question: t("howitworks.faq1.question"),
+      answer: t("howitworks.faq1.answer")
     },
     {
-      question: "Do I need to install anything on my property?",
-      answer: "No. There is no need for any installation on your property. Our solar farms are built and maintained at remote locations, allowing you to benefit from solar energy without any changes to your home or business."
+      question: t("howitworks.faq2.question"),
+      answer: t("howitworks.faq2.answer")
     },
     {
-      question: "Am I locked into a long-term contract?",
-      answer: "No. Our program offers flexible terms, and you can cancel at any time with reasonable notice. There are no cancellation fees or hidden charges."
+      question: t("howitworks.faq3.question"),
+      answer: t("howitworks.faq3.answer")
     },
     {
-      question: "How much will I save on my electricity bill?",
-      answer: "With our program, you can get up to 150 units of free electricity every month. The exact savings depend on your energy consumption, but most customers save between $300-$600 annually."
+      question: t("howitworks.faq4.question"),
+      answer: t("howitworks.faq4.answer")
     },
     {
-      question: "What happens if I move?",
-      answer: "If you move within our service area, your subscription can move with you. If you move outside our service area, you can cancel your subscription without any penalty."
+      question: t("howitworks.faq5.question"),
+      answer: t("howitworks.faq5.answer")
     }
   ];
 
@@ -68,9 +71,9 @@ const HowItWorks = () => {
         <section className="bg-gradient-to-b from-solar-yellow/10 to-white py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-solar-dark mb-6">How Our Solar Program Works</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-solar-dark mb-6">{t("howitworks.page.heading")}</h1>
               <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-                Our simple 4-step process makes it easy to start enjoying free clean energy without any installation or upfront costs.
+                {t("howitworks.page.subheading")}
               </p>
             </div>
           </div>
@@ -80,10 +83,10 @@ const HowItWorks = () => {
         <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">Simple Four-Step Process</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("howitworks.page.process.title")}</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
               <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                Our process is simple and straightforward, allowing you to benefit from solar energy without any hassle.
+                {t("howitworks.page.process.subtitle")}
               </p>
             </div>
 
@@ -100,7 +103,7 @@ const HowItWorks = () => {
                   >
                     <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
                       <span className={`inline-block text-sm font-semibold text-solar-${step.color} mb-2 px-3 py-1 bg-solar-${step.color}/10 rounded-full`}>
-                        Step {step.number}
+                        {t("howitworks.page.step")} {step.number}
                       </span>
                       <h3 className="text-2xl font-bold text-solar-dark mb-3">{step.title}</h3>
                       <p className="text-gray-600">{step.description}</p>
@@ -130,7 +133,7 @@ const HowItWorks = () => {
         <section className="py-16 md:py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-solar-dark mb-4">Why Choose Our Program?</h2>
+              <h2 className="text-3xl font-bold text-solar-dark mb-4">{t("howitworks.page.benefits.title")}</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
             </div>
             
@@ -140,9 +143,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-yellow/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-yellow" />
                   </div>
-                  <h3 className="font-bold text-xl">No Upfront Cost</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.noCost")}</h3>
                 </div>
-                <p className="text-gray-600">Join our program without any initial investment or hidden fees.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.noCostDesc")}</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -150,9 +153,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-orange/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-orange" />
                   </div>
-                  <h3 className="font-bold text-xl">No Installation</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.noInstall")}</h3>
                 </div>
-                <p className="text-gray-600">No need for roof space or any installations on your property.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.noInstallDesc")}</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -160,9 +163,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-green/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-green" />
                   </div>
-                  <h3 className="font-bold text-xl">Free Energy Units</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.freeUnits")}</h3>
                 </div>
-                <p className="text-gray-600">Receive up to 150 free energy units every month on your utility bill.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.freeUnitsDesc")}</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -170,9 +173,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-blue/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-blue" />
                   </div>
-                  <h3 className="font-bold text-xl">No Maintenance</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.noMaintenance")}</h3>
                 </div>
-                <p className="text-gray-600">We handle all maintenance and operations of the solar facilities.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.noMaintenanceDesc")}</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -180,9 +183,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-yellow/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-yellow" />
                   </div>
-                  <h3 className="font-bold text-xl">Flexible Terms</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.flexibleTerms")}</h3>
                 </div>
-                <p className="text-gray-600">No long-term commitments; you can cancel anytime with notice.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.flexibleTermsDesc")}</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -190,9 +193,9 @@ const HowItWorks = () => {
                   <div className="bg-solar-orange/20 p-2 rounded-full mr-3">
                     <CheckCircle className="h-6 w-6 text-solar-orange" />
                   </div>
-                  <h3 className="font-bold text-xl">Eco-Friendly</h3>
+                  <h3 className="font-bold text-xl">{t("howitworks.page.benefits.ecoFriendly")}</h3>
                 </div>
-                <p className="text-gray-600">Support renewable energy and reduce your carbon footprint.</p>
+                <p className="text-gray-600">{t("howitworks.page.benefits.ecoFriendlyDesc")}</p>
               </div>
             </div>
           </div>
@@ -202,10 +205,10 @@ const HowItWorks = () => {
         <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">{t("howitworks.page.faq.title")}</h2>
               <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
               <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                Find answers to common questions about our community solar program.
+                {t("howitworks.page.faq.subtitle")}
               </p>
             </div>
 
@@ -225,17 +228,17 @@ const HowItWorks = () => {
         {/* CTA Section */}
         <section className="bg-solar-dark py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{t("howitworks.page.cta.title")}</h2>
             <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-              Join our community solar program today and start enjoying free energy units every month.
+              {t("howitworks.page.cta.subtitle")}
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <Button size="lg" className="bg-solar-yellow hover:bg-solar-orange text-solar-dark">
-                Sign Up Now <ArrowRight className="ml-2 h-5 w-5" />
+                {t("howitworks.page.cta.signup")} <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Link to="/contact">
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                  Contact Us
+                  {t("howitworks.page.cta.contact")}
                 </Button>
               </Link>
             </div>

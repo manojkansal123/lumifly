@@ -12,6 +12,12 @@ import { Globe } from "lucide-react";
 const LanguageSwitcher = () => {
   const { language, setLanguage, t } = useLanguage();
 
+  // Debug the language switching
+  console.log("Current language in switcher:", language);
+  console.log("Language text:", t("language"));
+  console.log("English text:", t("language.english"));
+  console.log("Odia text:", t("language.odia"));
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

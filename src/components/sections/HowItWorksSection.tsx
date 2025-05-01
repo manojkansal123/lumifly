@@ -5,6 +5,10 @@ import { useLanguage } from "@/context/LanguageContext";
 const HowItWorksSection = () => {
   const { t, language } = useLanguage();
   
+  // Debug the translations to ensure they're working
+  console.log("Current language:", language);
+  console.log("Step 1 title translation:", t("howitworks.step1.title"));
+  
   const steps = [
     {
       number: "01",
@@ -39,10 +43,6 @@ const HowItWorksSection = () => {
       alt: t("howitworks.step4.alt")
     }
   ];
-
-  // Debug the translations to ensure they're working
-  console.log("Current language:", language);
-  console.log("Step 1 title translation:", t("howitworks.step1.title"));
 
   return (
     <section id="how-it-works" className="py-16 md:py-24 bg-gray-50">

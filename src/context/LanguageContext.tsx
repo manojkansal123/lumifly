@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define the shape of the translations
@@ -331,28 +332,38 @@ const odTranslations = {
 // Language Provider component
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<string>(localStorage.getItem('lang') || 'en');
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('lang', language);
+    console.log("Language set to:", language);
+    // Force re-render after language change
+    setInitialized(true);
   }, [language]);
 
   const translations = language === 'en' ? enTranslations : odTranslations;
 
   const t = (key: string, params: Record<string, string | number> = {}) => {
-    let translation = key
-      .split('.')
-      .reduce((obj: any, i: string) => {
-        return obj ? obj[i] : undefined;
-      }, translations);
+    try {
+      let translation = key
+        .split('.')
+        .reduce((obj: any, i: string) => {
+          return obj ? obj[i] : undefined;
+        }, translations);
 
-    if (typeof translation === 'string') {
-      Object.keys(params).forEach(paramKey => {
-        translation = translation.replace(`{{${paramKey}}}`, String(params[paramKey]));
-      });
-      return translation;
+      if (typeof translation === 'string') {
+        Object.keys(params).forEach(paramKey => {
+          translation = translation.replace(`{{${paramKey}}}`, String(params[paramKey]));
+        });
+        return translation;
+      }
+      
+      console.log(`Translation not found for key: ${key}`);
+      return key;
+    } catch (error) {
+      console.error(`Error translating key: ${key}`, error);
+      return key;
     }
-
-    return key;
   };
 
   return (

@@ -5,10 +5,16 @@ import './index.css'
 import { AuthProvider } from './context/AuthContext'
 import { LanguageProvider } from './context/LanguageContext'
 
-createRoot(document.getElementById("root")!).render(
-  <LanguageProvider>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </LanguageProvider>
-);
+// Force immediate language initialization
+const initApp = () => {
+  console.log("Initializing application with language support");
+  createRoot(document.getElementById("root")!).render(
+    <LanguageProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </LanguageProvider>
+  );
+};
+
+initApp();

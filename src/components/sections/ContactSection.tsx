@@ -29,8 +29,8 @@ const ContactSection = () => {
     e.preventDefault();
     // In a real application, this would send the data to a server
     toast({
-      title: "Message Sent",
-      description: "Thank you for your message! We will get back to you soon.",
+      title: t("contact.form.success"),
+      description: t("contact.form.successMsg"),
     });
     setFormData({
       name: '',
@@ -65,7 +65,7 @@ const ContactSection = () => {
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
+              <h3 className="text-2xl font-bold mb-6">{t("contact.info.title")}</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -73,8 +73,8 @@ const ContactSection = () => {
                     <MapPin className="h-5 w-5 text-solar-dark" />
                   </div>
                   <div>
-                    <h4 className="font-bold">Our Location</h4>
-                    <p className="text-gray-300 mt-1">123 Solar Street<br />Sunshine City, SC 12345</p>
+                    <h4 className="font-bold">{t("contact.info.location.title")}</h4>
+                    <p className="text-gray-300 mt-1">{t("contact.info.location.value")}</p>
                   </div>
                 </div>
 
@@ -83,8 +83,8 @@ const ContactSection = () => {
                     <Mail className="h-5 w-5 text-solar-dark" />
                   </div>
                   <div>
-                    <h4 className="font-bold">Email Us</h4>
-                    <p className="text-gray-300 mt-1">info@sunnyfree.com<br />support@sunnyfree.com</p>
+                    <h4 className="font-bold">{t("contact.info.email.title")}</h4>
+                    <p className="text-gray-300 mt-1">{t("contact.info.email.value")}</p>
                   </div>
                 </div>
 
@@ -93,21 +93,21 @@ const ContactSection = () => {
                     <Phone className="h-5 w-5 text-solar-dark" />
                   </div>
                   <div>
-                    <h4 className="font-bold">Call Us</h4>
-                    <p className="text-gray-300 mt-1">(123) 456-7890<br />(987) 654-3210</p>
+                    <h4 className="font-bold">{t("contact.info.phone.title")}</h4>
+                    <p className="text-gray-300 mt-1">{t("contact.info.phone.value")}</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-10">
-                <h4 className="font-bold mb-3">Hours of Operation</h4>
+                <h4 className="font-bold mb-3">{t("contact.info.hours.title")}</h4>
                 <div className="grid grid-cols-2 gap-2 text-gray-300">
-                  <div>Monday - Friday:</div>
-                  <div>9:00 AM - 6:00 PM</div>
-                  <div>Saturday:</div>
-                  <div>10:00 AM - 4:00 PM</div>
-                  <div>Sunday:</div>
-                  <div>Closed</div>
+                  <div>{t("contact.info.hours.weekdays")}</div>
+                  <div>{t("contact.info.hours.weekdaysTime")}</div>
+                  <div>{t("contact.info.hours.saturday")}</div>
+                  <div>{t("contact.info.hours.saturdayTime")}</div>
+                  <div>{t("contact.info.hours.sunday")}</div>
+                  <div>{t("contact.info.hours.sundayTime")}</div>
                 </div>
               </div>
             </div>
@@ -115,31 +115,31 @@ const ContactSection = () => {
 
           {/* Contact Form - Right Side */}
           <div className="bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-solar-dark mb-6">Send Us a Message</h3>
+            <h3 className="text-2xl font-bold text-solar-dark mb-6">{t("contact.form.title")}</h3>
             
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">{t("contact.form.name")}</label>
                   <Input
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
+                    placeholder={t("contact.form.namePlaceholder")}
                     required
                     className="w-full"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">{t("contact.form.email")}</label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="john@example.com"
+                    placeholder={t("contact.form.emailPlaceholder")}
                     required
                     className="w-full"
                   />
@@ -147,33 +147,33 @@ const ContactSection = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">{t("contact.form.phone")}</label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="(123) 456-7890"
+                  placeholder={t("contact.form.phonePlaceholder")}
                   className="w-full"
                 />
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">{t("contact.form.message")}</label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="How can we help you today?"
+                  placeholder={t("contact.form.messagePlaceholder")}
                   required
                   className="w-full h-32"
                 />
               </div>
               
               <Button type="submit" className="bg-solar-yellow hover:bg-solar-orange text-white w-full md:w-auto">
-                Send Message <Send className="ml-2 h-4 w-4" />
+                {t("contact.form.send")} <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
           </div>

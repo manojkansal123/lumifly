@@ -35,13 +35,13 @@ const CalculatorSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* Inputs Side */}
             <div className="p-8 bg-gray-50">
-              <h3 className="text-xl font-bold text-solar-dark mb-6">Enter Your Details</h3>
+              <h3 className="text-xl font-bold text-solar-dark mb-6">{t("calculator.input.bill")}</h3>
 
               <div className="space-y-8">
                 {/* Average Monthly Bill */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Average Monthly Electric Bill
+                    {t("calculator.input.bill")}
                   </label>
                   <div className="flex items-center">
                     <span className="text-gray-500 mr-2">$</span>
@@ -74,7 +74,7 @@ const CalculatorSection = () => {
                 {/* Monthly Consumption */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Monthly Energy Consumption (kWh)
+                    {t("calculator.input.consumption")}
                   </label>
                   <Input
                     type="number"
@@ -104,58 +104,57 @@ const CalculatorSection = () => {
 
               <div className="mt-8">
                 <p className="text-sm text-gray-500">
-                  Our program provides 150 free units of electricity every month.
-                  Adjust your current bill and consumption to see your potential savings.
+                  {t("calculator.info")}
                 </p>
               </div>
             </div>
 
             {/* Results Side */}
             <div className="p-8 bg-white border-t md:border-t-0 md:border-l border-gray-100">
-              <h3 className="text-xl font-bold text-solar-dark mb-6">Your Estimated Savings</h3>
+              <h3 className="text-xl font-bold text-solar-dark mb-6">{t("calculator.results.title")}</h3>
 
               <div className="space-y-6">
                 {/* Free Units Value */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">Value of Free Units</p>
+                    <p className="text-sm text-gray-500">{t("calculator.results.freeUnits")}</p>
                     <p className="font-semibold text-solar-green">${savingsFromFreeUnits.toFixed(2)}</p>
                   </div>
                   <div className="bg-solar-green/10 text-solar-green font-medium py-1 px-3 rounded-full text-sm">
-                    150 Free Units
+                    {t("calculator.results.freeLabel")}
                   </div>
                 </div>
 
                 {/* New Monthly Bill */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">New Monthly Bill</p>
+                    <p className="text-sm text-gray-500">{t("calculator.results.newBill")}</p>
                     <p className="font-semibold text-solar-dark">${newMonthlyBill.toFixed(2)}</p>
                   </div>
                   <div className="bg-solar-blue/10 text-solar-blue font-medium py-1 px-3 rounded-full text-sm">
-                    {remainingUnits.toFixed(0)} Units
+                    {remainingUnits.toFixed(0)} {t("calculator.results.remainingUnits")}
                   </div>
                 </div>
 
                 {/* Monthly Savings */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">Monthly Savings</p>
+                    <p className="text-sm text-gray-500">{t("calculator.results.monthlySavings")}</p>
                     <p className="font-semibold text-solar-orange">${totalSavings.toFixed(2)}</p>
                   </div>
                   <div className="bg-solar-orange/10 text-solar-orange font-medium py-1 px-3 rounded-full text-sm">
-                    {savingsPercentage.toFixed(0)}% Savings
+                    {savingsPercentage.toFixed(0)}% {t("calculator.results.savingsPercent")}
                   </div>
                 </div>
 
                 {/* Annual Savings */}
                 <div className="bg-solar-yellow/10 p-6 rounded-lg text-center">
-                  <p className="text-sm text-solar-dark mb-1">Your Annual Savings</p>
+                  <p className="text-sm text-solar-dark mb-1">{t("calculator.results.annualSavings")}</p>
                   <p className="text-3xl font-bold text-solar-dark">${(totalSavings * 12).toFixed(2)}</p>
                 </div>
 
                 <Button className="w-full bg-solar-yellow hover:bg-solar-orange text-white">
-                  Sign Up Now & Start Saving
+                  {t("calculator.results.signUp")}
                 </Button>
               </div>
             </div>

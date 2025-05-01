@@ -1,5 +1,5 @@
 
-import { CheckCircle, Sparkles, Leaf, Home, Shield, Building, Clock, Zap } from 'lucide-react';
+import { CheckCircle, Sparkles, Leaf, Home, Shield, Building, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -52,22 +52,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#f97316">
               <Sparkles size={36} className="text-solar-yellow fill-solar-yellow/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">Free Energy Units</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card1.title")}</h3>
             <p className="text-gray-600">
-              Get up to 150 units of free electricity every month. That's significant savings on your power bill.
+              {t("benefits.card1.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Zero cost for the first 150 units</span>
+                <span>{t("benefits.card1.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Discounted rates beyond free units</span>
+                <span>{t("benefits.card1.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Average annual savings of $500+</span>
+                <span>{t("benefits.card1.feature3")}</span>
               </li>
             </ul>
           </div>
@@ -77,22 +77,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#10b981">
               <Leaf size={36} className="text-solar-green fill-solar-green/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">Environmental Impact</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card2.title")}</h3>
             <p className="text-gray-600">
-              Reduce your carbon footprint and contribute to a cleaner environment with renewable energy.
+              {t("benefits.card2.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Reduce CO₂ emissions</span>
+                <span>{t("benefits.card2.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Support renewable energy growth</span>
+                <span>{t("benefits.card2.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Combat climate change locally</span>
+                <span>{t("benefits.card2.feature3")}</span>
               </li>
             </ul>
           </div>
@@ -102,22 +102,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#0ea5e9">
               <Home size={36} className="text-solar-blue fill-solar-blue/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">No Installation Needed</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card3.title")}</h3>
             <p className="text-gray-600">
-              Benefit from solar without installing panels on your property. No maintenance or upfront costs.
+              {t("benefits.card3.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>No rooftop installation required</span>
+                <span>{t("benefits.card3.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Zero maintenance responsibilities</span>
+                <span>{t("benefits.card3.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Works for renters and homeowners</span>
+                <span>{t("benefits.card3.feature3")}</span>
               </li>
             </ul>
           </div>
@@ -127,22 +127,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#f97316">
               <Shield size={36} className="text-solar-orange fill-solar-orange/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">Energy Security</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card4.title")}</h3>
             <p className="text-gray-600">
-              Protect yourself from rising energy costs and grid outages with local renewable power.
+              {t("benefits.card4.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Stable energy costs</span>
+                <span>{t("benefits.card4.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Reduced dependency on the grid</span>
+                <span>{t("benefits.card4.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Protection from utility price hikes</span>
+                <span>{t("benefits.card4.feature3")}</span>
               </li>
             </ul>
           </div>
@@ -152,22 +152,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#f97316">
               <Building size={36} className="text-solar-yellow fill-solar-yellow/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">Community Support</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card5.title")}</h3>
             <p className="text-gray-600">
-              Strengthen your local community by supporting local jobs and shared infrastructure.
+              {t("benefits.card5.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Creates local green jobs</span>
+                <span>{t("benefits.card5.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Builds community resilience</span>
+                <span>{t("benefits.card5.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Supports local energy independence</span>
+                <span>{t("benefits.card5.feature3")}</span>
               </li>
             </ul>
           </div>
@@ -177,22 +177,22 @@ const BenefitsSection = () => {
             <AnimatedIconContainer bgColor="#0ea5e9">
               <Zap size={36} className="text-solar-blue fill-solar-blue/10" strokeWidth={1.5} />
             </AnimatedIconContainer>
-            <h3 className="text-xl font-bold text-solar-dark mb-3">Simple Signup Process</h3>
+            <h3 className="text-xl font-bold text-solar-dark mb-3">{t("benefits.card6.title")}</h3>
             <p className="text-gray-600">
-              Getting started is easy with our streamlined enrollment process and dedicated support team.
+              {t("benefits.card6.description")}
             </p>
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Quick 5-minute application</span>
+                <span>{t("benefits.card6.feature1")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>No credit checks required</span>
+                <span>{t("benefits.card6.feature2")}</span>
               </li>
               <li className="flex items-center text-gray-600">
                 <CheckCircle size={16} className="text-solar-green mr-2" />
-                <span>Dedicated customer support</span>
+                <span>{t("benefits.card6.feature3")}</span>
               </li>
             </ul>
           </div>

@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-          <p>{t('footer.copyright', { year: currentYear })}</p>
+          <p>{t('footer.copyright').replace('{year}', currentYear.toString())}</p>
         </div>
       </div>
     </footer>

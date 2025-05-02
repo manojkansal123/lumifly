@@ -4,6 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const currentYear = new Date().getFullYear();
   
   return (
     <footer className="bg-lumifly-navy text-white pt-12 pb-6">
@@ -83,7 +84,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
+          <p>{t('footer.copyright', { year: currentYear })}</p>
         </div>
       </div>
     </footer>

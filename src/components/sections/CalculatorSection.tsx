@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { useLanguage } from '@/context/LanguageContext';
-import { Calculator, IndianRupee, CheckCircle, ArrowRight } from 'lucide-react';
+import { Calculator, IndianRupee, CheckCircle, ArrowRight, Lightbulb, Percent, Info, Sun } from 'lucide-react';
 
 const CalculatorSection = () => {
   const { t } = useLanguage();
@@ -50,29 +50,29 @@ const CalculatorSection = () => {
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-solar-dark mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-lumifly-navy mb-4">
             {t("calculator.title") || "Solar Savings Calculator"}
           </h2>
-          <div className="w-24 h-1 bg-solar-yellow mx-auto"></div>
+          <div className="w-24 h-1 bg-lumifly-purple mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            {t("calculator.subtitle") || "See how much you could save by switching to solar energy"}
+            {t("calculator.subtitle") || "See how much you could save with Lumifly's solar energy solutions"}
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Inputs Side */}
+            {/* Inputs Side - Enhanced with more content */}
             <div className="p-8 bg-gray-50">
-              <h3 className="text-xl font-bold text-solar-dark mb-6 flex items-center">
-                <Calculator className="mr-2 text-solar-yellow" />
-                {t("calculator.input.bill") || "Enter Your Details"}
+              <h3 className="text-xl font-bold text-lumifly-navy mb-6 flex items-center">
+                <Calculator className="mr-2 text-lumifly-purple" />
+                {t("calculator.input.details") || "Enter Your Monthly Electricity Bill"}
               </h3>
 
               <div className="space-y-8">
                 {/* Average Monthly Bill */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t("calculator.input.bill") || "Your Average Monthly Bill"}
+                    {t("calculator.input.currentBill") || "Your Current Monthly Electricity Bill"}
                   </label>
                   <div className="flex items-center">
                     <span className="text-gray-500 mr-2">₹</span>
@@ -102,32 +102,48 @@ const CalculatorSection = () => {
                   </div>
                 </div>
 
+                {/* Required Capacity Box */}
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
                   <div className="flex items-center mb-2">
-                    <div className="h-8 w-8 rounded-full bg-solar-yellow/20 flex items-center justify-center mr-3">
-                      <IndianRupee size={18} className="text-solar-yellow" />
+                    <div className="h-8 w-8 rounded-full bg-lumifly-purple/20 flex items-center justify-center mr-3">
+                      <Sun size={18} className="text-lumifly-purple" />
                     </div>
-                    <h4 className="font-medium text-solar-dark">Required Capacity</h4>
+                    <h4 className="font-medium text-lumifly-navy">Recommended Solar System</h4>
                   </div>
                   
                   <div className="pl-11">
-                    <div className="font-bold text-2xl text-solar-dark">{capacity} kW</div>
-                    <p className="text-sm text-gray-500 mt-1">Based on your monthly bill</p>
+                    <div className="font-bold text-2xl text-lumifly-navy">{capacity} kW</div>
+                    <p className="text-sm text-gray-500 mt-1">Based on your electricity consumption pattern</p>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-8">
-                <p className="text-sm text-gray-500 flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-solar-green" />
-                  {t("calculator.info") || "Results are estimates based on typical energy usage patterns"}
-                </p>
+                {/* How It Works */}
+                <div className="bg-lumifly-light/20 p-4 rounded-lg">
+                  <h4 className="font-medium text-lumifly-navy flex items-center mb-3">
+                    <Lightbulb size={18} className="mr-2 text-lumifly-purple" />
+                    How Our Solar Program Works
+                  </h4>
+                  <ul className="space-y-2 pl-7 list-disc text-sm text-gray-600">
+                    <li>Zero upfront cost for installation</li>
+                    <li>Generate free electricity from day one</li>
+                    <li>Reduce your electricity bill substantially</li>
+                    <li>Maintenance and repairs handled by us</li>
+                    <li>25-year warranty on solar panels</li>
+                  </ul>
+                </div>
+
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500 flex items-center">
+                    <CheckCircle className="h-4 w-4 mr-2 text-lumifly-purple" />
+                    {t("calculator.info") || "Results are estimates based on typical energy usage patterns"}
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Results Side */}
             <div className="p-8 bg-white border-t md:border-t-0 md:border-l border-gray-100">
-              <h3 className="text-xl font-bold text-solar-dark mb-6">
+              <h3 className="text-xl font-bold text-lumifly-navy mb-6">
                 {t("calculator.results.title") || "Your Estimated Savings"}
               </h3>
 
@@ -135,25 +151,25 @@ const CalculatorSection = () => {
                 {/* Free Units */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">{t("calculator.results.freeUnits") || "Free Units"}</p>
-                    <p className="font-semibold text-solar-green">{freeUnits} units</p>
+                    <p className="text-sm text-gray-500">{t("calculator.results.freeUnits") || "Free Energy Generated"}</p>
+                    <p className="font-semibold text-lumifly-purple">{freeUnits} units/month</p>
                   </div>
-                  <div className="bg-solar-green/10 text-solar-green font-medium py-1 px-3 rounded-full text-sm">
-                    {t("calculator.results.freeLabel") || "Monthly"}
+                  <div className="bg-lumifly-purple/10 text-lumifly-purple font-medium py-1 px-3 rounded-full text-sm">
+                    {t("calculator.results.freeLabel") || "Green Energy"}
                   </div>
                 </div>
 
                 {/* Bill Comparison */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">Existing Bill Amount</p>
-                    <p className="font-semibold text-solar-dark line-through">₹{monthlyBill.toLocaleString()}</p>
+                    <p className="text-sm text-gray-500">Current Monthly Bill</p>
+                    <p className="font-semibold text-lumifly-navy line-through">₹{monthlyBill.toLocaleString()}</p>
                   </div>
                   <div className="flex items-center">
-                    <ArrowRight className="text-solar-blue mx-2" />
+                    <ArrowRight className="text-lumifly-purple mx-2" />
                     <div>
-                      <p className="text-sm text-gray-500">New Bill Amount</p>
-                      <p className="font-semibold text-solar-blue">₹{newBillAmount.toLocaleString()}</p>
+                      <p className="text-sm text-gray-500">New Monthly Bill</p>
+                      <p className="font-semibold text-lumifly-purple">₹{newBillAmount.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
@@ -161,7 +177,7 @@ const CalculatorSection = () => {
                 {/* Monthly Savings */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">{t("calculator.results.monthlySavings") || "Monthly Savings"}</p>
+                    <p className="text-sm text-gray-500">{t("calculator.results.monthlySavings") || "Monthly Bill Savings"}</p>
                     <p className="font-semibold text-solar-orange">₹{savingsPerMonth.toLocaleString()}</p>
                   </div>
                   <div className="bg-solar-orange/10 text-solar-orange font-medium py-1 px-3 rounded-full text-sm">
@@ -170,40 +186,44 @@ const CalculatorSection = () => {
                 </div>
 
                 {/* Annual Savings */}
-                <div className="bg-solar-yellow/10 p-4 rounded-lg">
+                <div className="bg-lumifly-purple/10 p-4 rounded-lg">
                   <div className="flex justify-between">
                     <div>
-                      <p className="text-sm text-solar-dark">{t("calculator.results.annualSavings") || "Annual Savings"}</p>
-                      <p className="text-xl font-bold text-solar-dark">₹{annualSavings.toLocaleString()}</p>
+                      <p className="text-sm text-lumifly-navy">{t("calculator.results.annualSavings") || "Annual Savings"}</p>
+                      <p className="text-xl font-bold text-lumifly-navy">₹{annualSavings.toLocaleString()}</p>
                     </div>
                     <div className="border-l pl-4">
-                      <p className="text-sm text-solar-dark">Lifetime Savings (25 yrs)</p>
-                      <p className="text-xl font-bold text-solar-dark">₹{lifetimeSavings.toLocaleString()}</p>
+                      <p className="text-sm text-lumifly-navy">25-Year Savings</p>
+                      <p className="text-xl font-bold text-lumifly-navy">₹{lifetimeSavings.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
                 
                 {/* Investment Details */}
-                <div className="bg-solar-blue/5 p-4 rounded-lg">
+                <div className="bg-lumifly-light/20 p-4 rounded-lg">
                   <div className="flex justify-between flex-col sm:flex-row gap-3">
                     <div>
-                      <p className="text-sm text-gray-600">Your Investment</p>
-                      <p className="text-lg font-bold text-solar-dark">₹{investment.toLocaleString()}</p>
+                      <p className="text-sm text-gray-600">One-time Investment</p>
+                      <p className="text-lg font-bold text-lumifly-navy">₹{investment.toLocaleString()}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">Break-even Period</p>
-                      <p className="text-lg font-bold text-solar-blue">{breakEvenPeriod} years</p>
+                      <p className="text-lg font-bold text-lumifly-purple">{breakEvenPeriod} years</p>
                     </div>
                   </div>
                 </div>
 
-                <Button className="w-full bg-solar-yellow hover:bg-solar-orange text-white py-6 text-lg font-bold">
-                  {t("calculator.results.signUp") || "Sign Up For Solar"}
+                <Button className="w-full bg-lumifly-purple hover:bg-lumifly-secondary text-white py-6 text-lg font-bold">
+                  {t("calculator.results.signUp") || "Sign Up For Solar Today"}
                 </Button>
 
-                <p className="text-xs text-gray-500 text-center">
-                  Start saving today with our easy solar installation program
-                </p>
+                <div className="flex items-start space-x-2">
+                  <Info className="h-4 w-4 text-gray-400 mt-1 flex-shrink-0" />
+                  <p className="text-xs text-gray-500">
+                    Start saving today with our zero-upfront cost solar installation program. 
+                    Actual savings may vary based on your actual consumption pattern and local regulations.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

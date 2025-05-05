@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -104,7 +105,7 @@ const Navbar = () => {
             <div className="ml-4 flex items-center">
               {isAuthenticated ? (
                 <Link to="/dashboard">
-                  <Button className="bg-lumifly-purple hover:bg-lumifly-secondary text-white">
+                  <Button className="bg-solar-orange hover:bg-solar-orange/90 text-white">
                     {t("nav.dashboard")}
                   </Button>
                 </Link>
@@ -112,13 +113,13 @@ const Navbar = () => {
                 <>
                   <Link to="/signin">
                     <Button 
-                      className="bg-lumifly-purple hover:bg-lumifly-secondary text-white"
+                      className="bg-solar-orange hover:bg-solar-orange/90 text-white"
                     >
                       {t("nav.signin")}
                     </Button>
                   </Link>
                   <Link to="/signup">
-                    <Button className="bg-lumifly-purple hover:bg-lumifly-secondary text-white ml-2">
+                    <Button className="bg-solar-orange hover:bg-solar-orange/90 text-white ml-2">
                       {t("nav.signup")}
                     </Button>
                   </Link>
@@ -185,7 +186,7 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <Link
                   to="/dashboard"
-                  className="block px-3 py-2 rounded-md text-base font-medium bg-lumifly-purple text-white text-center"
+                  className="block px-3 py-2 rounded-md text-base font-medium bg-solar-orange text-white text-center"
                 >
                   {t("nav.dashboard")}
                 </Link>
@@ -193,13 +194,13 @@ const Navbar = () => {
                 <div className="flex flex-col space-y-2">
                   <Link
                     to="/signin"
-                    className="block px-3 py-2 rounded-md text-base font-medium bg-lumifly-purple text-white text-center"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-solar-orange text-white text-center"
                   >
                     {t("nav.signin")}
                   </Link>
                   <Link
                     to="/signup"
-                    className="block px-3 py-2 rounded-md text-base font-medium bg-lumifly-purple text-white text-center"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-solar-orange text-white text-center"
                   >
                     {t("nav.signup")}
                   </Link>

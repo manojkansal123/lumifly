@@ -53,7 +53,7 @@ const CalculatorSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-lumifly-navy mb-4">
             {t("calculator.title") || "Solar Savings Calculator"}
           </h2>
-          <div className="w-24 h-1 bg-lumifly-purple mx-auto"></div>
+          <div className="w-24 h-1 bg-solar-orange mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
             {t("calculator.subtitle") || "See how much you could save with Lumifly's solar energy solutions"}
           </p>
@@ -64,15 +64,15 @@ const CalculatorSection = () => {
             {/* Inputs Side - Enhanced with more content */}
             <div className="p-8 bg-gray-50">
               <h3 className="text-xl font-bold text-lumifly-navy mb-6 flex items-center">
-                <Calculator className="mr-2 text-lumifly-purple" />
-                {t("calculator.input.details") || "Enter Your Monthly Electricity Bill"}
+                <Calculator className="mr-2 text-solar-orange" />
+                {t("calculator.input.details")}
               </h3>
 
               <div className="space-y-8">
                 {/* Average Monthly Bill */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t("calculator.input.currentBill") || "Your Current Monthly Electricity Bill"}
+                    {t("calculator.input.currentBill")}
                   </label>
                   <div className="flex items-center">
                     <span className="text-gray-500 mr-2">₹</span>
@@ -105,8 +105,8 @@ const CalculatorSection = () => {
                 {/* Required Capacity Box */}
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
                   <div className="flex items-center mb-2">
-                    <div className="h-8 w-8 rounded-full bg-lumifly-purple/20 flex items-center justify-center mr-3">
-                      <Sun size={18} className="text-lumifly-purple" />
+                    <div className="h-8 w-8 rounded-full bg-solar-orange/20 flex items-center justify-center mr-3">
+                      <Sun size={18} className="text-solar-orange" />
                     </div>
                     <h4 className="font-medium text-lumifly-navy">Recommended Solar System</h4>
                   </div>
@@ -118,9 +118,9 @@ const CalculatorSection = () => {
                 </div>
 
                 {/* How It Works */}
-                <div className="bg-lumifly-light/20 p-4 rounded-lg">
+                <div className="bg-solar-yellow/10 p-4 rounded-lg">
                   <h4 className="font-medium text-lumifly-navy flex items-center mb-3">
-                    <Lightbulb size={18} className="mr-2 text-lumifly-purple" />
+                    <Lightbulb size={18} className="mr-2 text-solar-orange" />
                     How Our Solar Program Works
                   </h4>
                   <ul className="space-y-2 pl-7 list-disc text-sm text-gray-600">
@@ -134,7 +134,7 @@ const CalculatorSection = () => {
 
                 <div className="mt-4">
                   <p className="text-sm text-gray-500 flex items-center">
-                    <CheckCircle className="h-4 w-4 mr-2 text-lumifly-purple" />
+                    <CheckCircle className="h-4 w-4 mr-2 text-solar-orange" />
                     {t("calculator.info") || "Results are estimates based on typical energy usage patterns"}
                   </p>
                 </div>
@@ -152,9 +152,9 @@ const CalculatorSection = () => {
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
                     <p className="text-sm text-gray-500">{t("calculator.results.freeUnits") || "Free Energy Generated"}</p>
-                    <p className="font-semibold text-lumifly-purple">{freeUnits} units/month</p>
+                    <p className="font-semibold text-solar-orange">{freeUnits} units/month</p>
                   </div>
-                  <div className="bg-lumifly-purple/10 text-lumifly-purple font-medium py-1 px-3 rounded-full text-sm">
+                  <div className="bg-solar-orange/10 text-solar-orange font-medium py-1 px-3 rounded-full text-sm">
                     {t("calculator.results.freeLabel") || "Green Energy"}
                   </div>
                 </div>
@@ -166,10 +166,10 @@ const CalculatorSection = () => {
                     <p className="font-semibold text-lumifly-navy line-through">₹{monthlyBill.toLocaleString()}</p>
                   </div>
                   <div className="flex items-center">
-                    <ArrowRight className="text-lumifly-purple mx-2" />
+                    <ArrowRight className="text-solar-orange mx-2" />
                     <div>
                       <p className="text-sm text-gray-500">New Monthly Bill</p>
-                      <p className="font-semibold text-lumifly-purple">₹{newBillAmount.toLocaleString()}</p>
+                      <p className="font-semibold text-solar-orange">₹{newBillAmount.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ const CalculatorSection = () => {
                 </div>
 
                 {/* Annual Savings */}
-                <div className="bg-lumifly-purple/10 p-4 rounded-lg">
+                <div className="bg-solar-orange/10 p-4 rounded-lg">
                   <div className="flex justify-between">
                     <div>
                       <p className="text-sm text-lumifly-navy">{t("calculator.results.annualSavings") || "Annual Savings"}</p>
@@ -200,7 +200,7 @@ const CalculatorSection = () => {
                 </div>
                 
                 {/* Investment Details */}
-                <div className="bg-lumifly-light/20 p-4 rounded-lg">
+                <div className="bg-solar-yellow/10 p-4 rounded-lg">
                   <div className="flex justify-between flex-col sm:flex-row gap-3">
                     <div>
                       <p className="text-sm text-gray-600">One-time Investment</p>
@@ -208,12 +208,12 @@ const CalculatorSection = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">Break-even Period</p>
-                      <p className="text-lg font-bold text-lumifly-purple">{breakEvenPeriod} years</p>
+                      <p className="text-lg font-bold text-solar-orange">{breakEvenPeriod} years</p>
                     </div>
                   </div>
                 </div>
 
-                <Button className="w-full bg-lumifly-purple hover:bg-lumifly-secondary text-white py-6 text-lg font-bold">
+                <Button className="w-full bg-solar-orange hover:bg-solar-orange/90 text-white py-6 text-lg font-bold">
                   {t("calculator.results.signUp") || "Sign Up For Solar Today"}
                 </Button>
 

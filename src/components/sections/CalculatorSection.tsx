@@ -9,7 +9,7 @@ import { Calculator, IndianRupee, CheckCircle, ArrowRight, Lightbulb, Percent, I
 const CalculatorSection = () => {
   const { t } = useLanguage();
   const [monthlyBill, setMonthlyBill] = useState<number>(1500);
-  const [capacity, setCapacity] = useState<number>(1);
+  const [capacity, setCapacity] = useState<number>(3); // Default set to 3 kW
   
   // Effect to calculate capacity based on monthly bill using the new formula
   useEffect(() => {

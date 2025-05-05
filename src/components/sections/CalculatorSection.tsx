@@ -11,13 +11,30 @@ const CalculatorSection = () => {
   const [monthlyBill, setMonthlyBill] = useState<number>(1500);
   const [capacity, setCapacity] = useState<number>(1);
   
-  // Effect to calculate capacity based on monthly bill
+  // Effect to calculate capacity based on monthly bill using the new formula
   useEffect(() => {
-    // Simple formula to estimate required solar capacity based on bill
-    // Assuming 1kW capacity for every Rs. 1500 of monthly bill
-    let estimatedCapacity = Math.max(1, Math.round(monthlyBill / 1500));
-    // Cap at 3kW for simplicity
-    estimatedCapacity = Math.min(estimatedCapacity, 3);
+    // New formula for solar system size calculation
+    let calculatedValue;
+    
+    if (monthlyBill < 145) {
+      calculatedValue = monthlyBill / 2.9;
+    } else if (monthlyBill < 850) {
+      calculatedValue = (50 + (monthlyBill - 145) / 4.7);
+    } else if (monthlyBill < 1990) {
+      calculatedValue = (200 + (monthlyBill - 850) / 5.7);
+    } else {
+      calculatedValue = (400 + (monthlyBill - 1990) / 6.1);
+    }
+    
+    // Convert to kW based on the formula
+    let estimatedCapacity = calculatedValue / (1.04 * 110);
+    
+    // Round to nearest 0.5
+    estimatedCapacity = Math.round(estimatedCapacity * 2) / 2;
+    
+    // Ensure minimum of 1kW and maximum of 3kW for the UI
+    estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 3));
+    
     setCapacity(estimatedCapacity);
   }, [monthlyBill]);
 
@@ -30,7 +47,7 @@ const CalculatorSection = () => {
   
   // Investment based on capacity
   let investment = 0;
-  switch(capacity) {
+  switch(Math.round(capacity)) {
     case 1:
       investment = 5000;
       break;
@@ -65,14 +82,14 @@ const CalculatorSection = () => {
             <div className="p-8 bg-gray-50">
               <h3 className="text-xl font-bold text-lumifly-navy mb-6 flex items-center">
                 <Calculator className="mr-2 text-solar-orange" />
-                {t("calculator.input.details")}
+                Solar Calculator
               </h3>
 
               <div className="space-y-8">
                 {/* Average Monthly Bill */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t("calculator.input.currentBill")}
+                    Your Average Monthly Electricity Bill
                   </label>
                   <div className="flex items-center">
                     <span className="text-gray-500 mr-2">₹</span>
@@ -135,7 +152,7 @@ const CalculatorSection = () => {
                 <div className="mt-4">
                   <p className="text-sm text-gray-500 flex items-center">
                     <CheckCircle className="h-4 w-4 mr-2 text-solar-orange" />
-                    {t("calculator.info") || "Results are estimates based on typical energy usage patterns"}
+                    Results are estimates based on typical energy usage patterns
                   </p>
                 </div>
               </div>
@@ -144,18 +161,18 @@ const CalculatorSection = () => {
             {/* Results Side */}
             <div className="p-8 bg-white border-t md:border-t-0 md:border-l border-gray-100">
               <h3 className="text-xl font-bold text-lumifly-navy mb-6">
-                {t("calculator.results.title") || "Your Estimated Savings"}
+                Your Estimated Savings
               </h3>
 
               <div className="space-y-6">
                 {/* Free Units */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">{t("calculator.results.freeUnits") || "Free Energy Generated"}</p>
+                    <p className="text-sm text-gray-500">Free Energy Generated</p>
                     <p className="font-semibold text-solar-orange">{freeUnits} units/month</p>
                   </div>
                   <div className="bg-solar-orange/10 text-solar-orange font-medium py-1 px-3 rounded-full text-sm">
-                    {t("calculator.results.freeLabel") || "Green Energy"}
+                    Green Energy
                   </div>
                 </div>
 
@@ -177,11 +194,11 @@ const CalculatorSection = () => {
                 {/* Monthly Savings */}
                 <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                   <div>
-                    <p className="text-sm text-gray-500">{t("calculator.results.monthlySavings") || "Monthly Bill Savings"}</p>
+                    <p className="text-sm text-gray-500">Monthly Bill Savings</p>
                     <p className="font-semibold text-solar-orange">₹{savingsPerMonth.toLocaleString()}</p>
                   </div>
                   <div className="bg-solar-orange/10 text-solar-orange font-medium py-1 px-3 rounded-full text-sm">
-                    {savingsPercentage}% {t("calculator.results.savingsPercent") || "reduction"}
+                    {savingsPercentage}% reduction
                   </div>
                 </div>
 
@@ -189,7 +206,7 @@ const CalculatorSection = () => {
                 <div className="bg-solar-orange/10 p-4 rounded-lg">
                   <div className="flex justify-between">
                     <div>
-                      <p className="text-sm text-lumifly-navy">{t("calculator.results.annualSavings") || "Annual Savings"}</p>
+                      <p className="text-sm text-lumifly-navy">Annual Savings</p>
                       <p className="text-xl font-bold text-lumifly-navy">₹{annualSavings.toLocaleString()}</p>
                     </div>
                     <div className="border-l pl-4">
@@ -214,7 +231,7 @@ const CalculatorSection = () => {
                 </div>
 
                 <Button className="w-full bg-solar-orange hover:bg-solar-orange/90 text-white py-6 text-lg font-bold">
-                  {t("calculator.results.signUp") || "Sign Up For Solar Today"}
+                  Sign Up For Solar Today
                 </Button>
 
                 <div className="flex items-start space-x-2">

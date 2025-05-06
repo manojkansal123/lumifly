@@ -13,29 +13,32 @@ const CalculatorSection = () => {
   
   // Effect to calculate capacity based on monthly bill using the new formula
   useEffect(() => {
-    // New formula for solar system size calculation
-    let calculatedValue;
-    
-    if (monthlyBill < 145) {
-      calculatedValue = monthlyBill / 2.9;
-    } else if (monthlyBill < 850) {
-      calculatedValue = (50 + (monthlyBill - 145) / 4.7);
-    } else if (monthlyBill < 1990) {
-      calculatedValue = (200 + (monthlyBill - 850) / 5.7);
-    } else {
-      calculatedValue = (400 + (monthlyBill - 1990) / 6.1);
+    // Only calculate if bill amount is changed by user
+    if (monthlyBill !== 1500) {
+      // New formula for solar system size calculation
+      let calculatedValue;
+      
+      if (monthlyBill < 145) {
+        calculatedValue = monthlyBill / 2.9;
+      } else if (monthlyBill < 850) {
+        calculatedValue = (50 + (monthlyBill - 145) / 4.7);
+      } else if (monthlyBill < 1990) {
+        calculatedValue = (200 + (monthlyBill - 850) / 5.7);
+      } else {
+        calculatedValue = (400 + (monthlyBill - 1990) / 6.1);
+      }
+      
+      // Convert to kW based on the formula
+      let estimatedCapacity = calculatedValue / (1.04 * 110);
+      
+      // Round to nearest whole number
+      estimatedCapacity = Math.round(estimatedCapacity);
+      
+      // Ensure minimum of 1kW and maximum of 10kW for the UI
+      estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 10));
+      
+      setCapacity(estimatedCapacity);
     }
-    
-    // Convert to kW based on the formula
-    let estimatedCapacity = calculatedValue / (1.04 * 110);
-    
-    // Round to nearest 0.5
-    estimatedCapacity = Math.round(estimatedCapacity * 2) / 2;
-    
-    // Ensure minimum of 1kW and maximum of 3kW for the UI
-    estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 3));
-    
-    setCapacity(estimatedCapacity);
   }, [monthlyBill]);
 
   // Calculate all the values

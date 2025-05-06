@@ -10,11 +10,12 @@ const CalculatorSection = () => {
   const { t } = useLanguage();
   const [monthlyBill, setMonthlyBill] = useState<number>(1500);
   const [capacity, setCapacity] = useState<number>(3); // Default set to 3 kW
+  const [manualCapacity, setManualCapacity] = useState<boolean>(false);
   
-  // Effect to calculate capacity based on monthly bill using the corrected formula
+  // Effect to calculate capacity based on monthly bill if not manually set
   useEffect(() => {
-    // Only calculate if bill amount is changed by user
-    if (monthlyBill !== 1500) {
+    // Only calculate if bill amount is changed by user and capacity is not manually set
+    if (monthlyBill !== 1500 && !manualCapacity) {
       // First adjust the bill amount as per formula: K24 = Current Bill Amount / 1.04
       const adjustedBill = monthlyBill / 1.04;
       
@@ -38,16 +39,38 @@ const CalculatorSection = () => {
       estimatedCapacity = Math.round(estimatedCapacity);
       
       // Ensure minimum of 1kW and maximum of 10kW for the UI
-      estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 10));
+      estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 9));
       
       setCapacity(estimatedCapacity);
     }
-  }, [monthlyBill]);
+  }, [monthlyBill, manualCapacity]);
 
-  // Calculate all the values
+  // Calculate energy generation based on capacity
   const freeUnits = 110 * capacity;
+  
+  // Calculate savings using the new method
+  const calculateSavings = () => {
+    let billAmount = 0;
+    const unitsGenerated = freeUnits;
+    
+    if (unitsGenerated <= 50) {
+      billAmount = unitsGenerated * 2.9;
+    } else if (unitsGenerated <= 200) {
+      billAmount = 50 * 2.9 + (unitsGenerated - 50) * 4.7;
+    } else if (unitsGenerated <= 400) {
+      billAmount = 50 * 2.9 + 150 * 4.7 + (unitsGenerated - 200) * 5.7;
+    } else {
+      billAmount = 50 * 2.9 + 150 * 4.7 + 200 * 5.7 + (unitsGenerated - 400) * 6.1;
+    }
+    
+    // Multiply with 1.04 to get total savings
+    return billAmount * 1.04;
+  };
+  
+  // Calculate all the values
+  const savingsAmount = calculateSavings();
   const newBillAmount = 1.5 * freeUnits;
-  const savingsPerMonth = Math.max(0, monthlyBill - newBillAmount);
+  const savingsPerMonth = Math.max(0, savingsAmount - newBillAmount);
   const savingsPercentage = Math.round((savingsPerMonth / monthlyBill) * 100);
   const annualSavings = savingsPerMonth * 12;
   
@@ -72,6 +95,12 @@ const CalculatorSection = () => {
   
   const breakEvenPeriod = annualSavings > 0 ? Math.round(investment / annualSavings * 10) / 10 : 0;
   const lifetimeSavings = annualSavings * 25;
+
+  // Handler for changing capacity manually
+  const handleCapacityChange = (value: number) => {
+    setManualCapacity(true);
+    setCapacity(value);
+  };
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -108,7 +137,10 @@ const CalculatorSection = () => {
                       min="100"
                       max="5000"
                       value={monthlyBill}
-                      onChange={(e) => setMonthlyBill(Number(e.target.value))}
+                      onChange={(e) => {
+                        setMonthlyBill(Number(e.target.value));
+                        setManualCapacity(false); // Reset manual flag when bill is changed
+                      }}
                       className="w-full"
                     />
                   </div>
@@ -119,12 +151,48 @@ const CalculatorSection = () => {
                       max={5000}
                       step={100}
                       className="w-full"
-                      onValueChange={(value) => setMonthlyBill(value[0])}
+                      onValueChange={(value) => {
+                        setMonthlyBill(value[0]);
+                        setManualCapacity(false); // Reset manual flag when bill is changed
+                      }}
                     />
                     <div className="flex justify-between text-xs text-gray-500 mt-1">
                       <span>₹100</span>
                       <span>₹2,500</span>
                       <span>₹5,000</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Solar System Size Input - NEW */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Solar System Size (kW)
+                  </label>
+                  <div className="flex items-center">
+                    <Input
+                      type="number"
+                      min="1"
+                      max="9"
+                      value={capacity}
+                      onChange={(e) => handleCapacityChange(Number(e.target.value))}
+                      className="w-full"
+                    />
+                    <span className="text-gray-500 ml-2">kW</span>
+                  </div>
+                  <div className="mt-2">
+                    <Slider
+                      value={[capacity]}
+                      min={1}
+                      max={9}
+                      step={1}
+                      className="w-full"
+                      onValueChange={(value) => handleCapacityChange(value[0])}
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>1 kW</span>
+                      <span>5 kW</span>
+                      <span>9 kW</span>
                     </div>
                   </div>
                 </div>
@@ -135,12 +203,16 @@ const CalculatorSection = () => {
                     <div className="h-8 w-8 rounded-full bg-solar-orange/20 flex items-center justify-center mr-3">
                       <Sun size={18} className="text-solar-orange" />
                     </div>
-                    <h4 className="font-medium text-lumifly-navy">Recommended Solar System</h4>
+                    <h4 className="font-medium text-lumifly-navy">
+                      {manualCapacity ? "Selected Solar System" : "Recommended Solar System"}
+                    </h4>
                   </div>
                   
                   <div className="pl-11">
                     <div className="font-bold text-2xl text-lumifly-navy">{capacity} kW</div>
-                    <p className="text-sm text-gray-500 mt-1">Based on your electricity consumption pattern</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {manualCapacity ? "Custom selection" : "Based on your electricity consumption pattern"}
+                    </p>
                   </div>
                 </div>
 

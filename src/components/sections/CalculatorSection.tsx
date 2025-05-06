@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -22,8 +23,6 @@ const CalculatorSection = () => {
       
       if (adjustedBill < 145) {
         calculatedValue = adjustedBill / 2.9;
-      } else if (adjustedBill < 850) {
-        calculatedValue = (50 + (adjustedBill - 145) / 4.7);
       } else if (adjustedBill < 850) {
         calculatedValue = (50 + (adjustedBill - 145) / 4.7);
       } else if (adjustedBill < 1990) {
@@ -106,8 +105,8 @@ const CalculatorSection = () => {
                     <span className="text-gray-500 mr-2">₹</span>
                     <Input
                       type="number"
-                      min="500"
-                      max="10000"
+                      min="100"
+                      max="5000"
                       value={monthlyBill}
                       onChange={(e) => setMonthlyBill(Number(e.target.value))}
                       className="w-full"
@@ -116,16 +115,16 @@ const CalculatorSection = () => {
                   <div className="mt-2">
                     <Slider
                       value={[monthlyBill]}
-                      min={500}
-                      max={10000}
+                      min={100}
+                      max={5000}
                       step={100}
                       className="w-full"
                       onValueChange={(value) => setMonthlyBill(value[0])}
                     />
                     <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>₹500</span>
+                      <span>₹100</span>
+                      <span>₹2,500</span>
                       <span>₹5,000</span>
-                      <span>₹10,000</span>
                     </div>
                   </div>
                 </div>

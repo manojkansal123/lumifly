@@ -11,25 +11,28 @@ const CalculatorSection = () => {
   const [monthlyBill, setMonthlyBill] = useState<number>(1500);
   const [capacity, setCapacity] = useState<number>(3); // Default set to 3 kW
   
-  // Effect to calculate capacity based on monthly bill using the new formula
+  // Effect to calculate capacity based on monthly bill using the corrected formula
   useEffect(() => {
     // Only calculate if bill amount is changed by user
     if (monthlyBill !== 1500) {
+      // First adjust the bill amount as per formula: K24 = Current Bill Amount / 1.04
+      const adjustedBill = monthlyBill / 1.04;
+      
       // New formula for solar system size calculation
       let calculatedValue;
       
-      if (monthlyBill < 145) {
-        calculatedValue = monthlyBill / 2.9;
-      } else if (monthlyBill < 850) {
-        calculatedValue = (50 + (monthlyBill - 145) / 4.7);
-      } else if (monthlyBill < 1990) {
-        calculatedValue = (200 + (monthlyBill - 850) / 5.7);
+      if (adjustedBill < 145) {
+        calculatedValue = adjustedBill / 2.9;
+      } else if (adjustedBill < 850) {
+        calculatedValue = (50 + (adjustedBill - 145) / 4.7);
+      } else if (adjustedBill < 1990) {
+        calculatedValue = (200 + (adjustedBill - 850) / 5.7);
       } else {
-        calculatedValue = (400 + (monthlyBill - 1990) / 6.1);
+        calculatedValue = (400 + (adjustedBill - 1990) / 6.1);
       }
       
-      // Convert to kW based on the formula
-      let estimatedCapacity = calculatedValue / (1.04 * 110);
+      // Convert to kW based on the updated formula (divide by 110 only)
+      let estimatedCapacity = calculatedValue / 110;
       
       // Round to nearest whole number
       estimatedCapacity = Math.round(estimatedCapacity);

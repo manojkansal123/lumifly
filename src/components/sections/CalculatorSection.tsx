@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -23,6 +22,8 @@ const CalculatorSection = () => {
       
       if (adjustedBill < 145) {
         calculatedValue = adjustedBill / 2.9;
+      } else if (adjustedBill < 850) {
+        calculatedValue = (50 + (adjustedBill - 145) / 4.7);
       } else if (adjustedBill < 850) {
         calculatedValue = (50 + (adjustedBill - 145) / 4.7);
       } else if (adjustedBill < 1990) {
@@ -51,19 +52,23 @@ const CalculatorSection = () => {
   const savingsPercentage = Math.round((savingsPerMonth / monthlyBill) * 100);
   const annualSavings = savingsPerMonth * 12;
   
-  // Investment based on capacity
-  let investment = 0;
-  switch(Math.round(capacity)) {
-    case 1:
-      investment = 5000;
-      break;
-    case 2:
-      investment = 10000;
-      break;
-    case 3:
-    default:
-      investment = 42000;
-      break;
+  // Investment based on capacity - updated to add 60000 for each kW beyond 3kW
+  let investment = 42000; // Base cost for 3kW system
+  
+  if (capacity < 3) {
+    // For systems smaller than 3kW
+    switch(Math.round(capacity)) {
+      case 1:
+        investment = 5000;
+        break;
+      case 2:
+        investment = 10000;
+        break;
+      // 3kW case is covered by the default value of 42000
+    }
+  } else if (capacity > 3) {
+    // For systems larger than 3kW, add 60000 for each additional kW
+    investment = 42000 + (capacity - 3) * 60000;
   }
   
   const breakEvenPeriod = annualSavings > 0 ? Math.round(investment / annualSavings * 10) / 10 : 0;

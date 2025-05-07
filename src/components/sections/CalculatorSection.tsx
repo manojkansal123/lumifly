@@ -11,15 +11,16 @@ const CalculatorSection = () => {
   const [monthlyBill, setMonthlyBill] = useState<number>(1500);
   const [capacity, setCapacity] = useState<number>(3); // Default set to 3 kW
   const [manualCapacity, setManualCapacity] = useState<boolean>(false);
+  const [manualBill, setManualBill] = useState<boolean>(false);
   
-  // Effect to calculate capacity based on monthly bill if not manually set
+  // Effect to calculate capacity based on monthly bill
   useEffect(() => {
-    // Only calculate if bill amount is changed by user and capacity is not manually set
-    if (monthlyBill !== 1500 && !manualCapacity) {
-      // First adjust the bill amount as per formula: K24 = Current Bill Amount / 1.04
+    if (!manualCapacity && manualBill) {
+      // Only calculate if bill amount is changed by user
+      // First adjust the bill amount as per formula: adjusted = Current Bill Amount / 1.04
       const adjustedBill = monthlyBill / 1.04;
       
-      // New formula for solar system size calculation
+      // Formula for solar system size calculation
       let calculatedValue;
       
       if (adjustedBill < 145) {
@@ -38,17 +39,52 @@ const CalculatorSection = () => {
       // Round to nearest whole number
       estimatedCapacity = Math.round(estimatedCapacity);
       
-      // Ensure minimum of 1kW and maximum of 10kW for the UI
+      // Ensure minimum of 1kW and maximum of 9kW for the UI
       estimatedCapacity = Math.max(1, Math.min(estimatedCapacity, 9));
       
       setCapacity(estimatedCapacity);
     }
-  }, [monthlyBill, manualCapacity]);
+  }, [monthlyBill, manualCapacity, manualBill]);
+
+  // Effect to calculate monthly bill based on capacity
+  useEffect(() => {
+    if (!manualBill && manualCapacity) {
+      // Calculate bill based on capacity
+      const unitsGenerated = 110 * capacity;
+      let calculatedBillAmount = calculateBillAmount(unitsGenerated);
+      
+      // Round to nearest 100
+      calculatedBillAmount = Math.round(calculatedBillAmount / 100) * 100;
+      
+      // Ensure minimum of 100 and maximum of 5000 for the UI
+      calculatedBillAmount = Math.max(100, Math.min(calculatedBillAmount, 5000));
+      
+      setMonthlyBill(calculatedBillAmount);
+    }
+  }, [capacity, manualBill, manualCapacity]);
+
+  // Helper function to calculate bill amount based on units
+  const calculateBillAmount = (units: number) => {
+    let billAmount = 0;
+    
+    if (units <= 50) {
+      billAmount = units * 2.9;
+    } else if (units <= 200) {
+      billAmount = 50 * 2.9 + (units - 50) * 4.7;
+    } else if (units <= 400) {
+      billAmount = 50 * 2.9 + 150 * 4.7 + (units - 200) * 5.7;
+    } else {
+      billAmount = 50 * 2.9 + 150 * 4.7 + 200 * 5.7 + (units - 400) * 6.1;
+    }
+    
+    // Multiply with 1.04 to get total bill amount
+    return billAmount * 1.04;
+  };
 
   // Calculate energy generation based on capacity
   const freeUnits = 110 * capacity;
   
-  // Calculate savings using the new method
+  // Calculate savings using the formula
   const calculateSavings = () => {
     let billAmount = 0;
     const unitsGenerated = freeUnits;
@@ -96,9 +132,17 @@ const CalculatorSection = () => {
   const breakEvenPeriod = annualSavings > 0 ? Math.round(investment / annualSavings * 10) / 10 : 0;
   const lifetimeSavings = annualSavings * 25;
 
+  // Handler for changing monthly bill
+  const handleMonthlyBillChange = (value: number) => {
+    setManualBill(true);
+    setManualCapacity(false);
+    setMonthlyBill(value);
+  };
+
   // Handler for changing capacity manually
   const handleCapacityChange = (value: number) => {
     setManualCapacity(true);
+    setManualBill(false);
     setCapacity(value);
   };
 
@@ -137,10 +181,7 @@ const CalculatorSection = () => {
                       min="100"
                       max="5000"
                       value={monthlyBill}
-                      onChange={(e) => {
-                        setMonthlyBill(Number(e.target.value));
-                        setManualCapacity(false); // Reset manual flag when bill is changed
-                      }}
+                      onChange={(e) => handleMonthlyBillChange(Number(e.target.value))}
                       className="w-full"
                     />
                   </div>
@@ -151,10 +192,7 @@ const CalculatorSection = () => {
                       max={5000}
                       step={100}
                       className="w-full"
-                      onValueChange={(value) => {
-                        setMonthlyBill(value[0]);
-                        setManualCapacity(false); // Reset manual flag when bill is changed
-                      }}
+                      onValueChange={(value) => handleMonthlyBillChange(value[0])}
                     />
                     <div className="flex justify-between text-xs text-gray-500 mt-1">
                       <span>₹100</span>

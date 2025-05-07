@@ -56,8 +56,8 @@ const CalculatorSection = () => {
       // Round to nearest 100
       calculatedBillAmount = Math.round(calculatedBillAmount / 100) * 100;
       
-      // Ensure minimum of 100 and maximum of 5000 for the UI
-      calculatedBillAmount = Math.max(100, Math.min(calculatedBillAmount, 5000));
+      // Ensure minimum of 100 and maximum of 6000 for the UI (increased from 5000)
+      calculatedBillAmount = Math.max(100, Math.min(calculatedBillAmount, 6000));
       
       setMonthlyBill(calculatedBillAmount);
     }
@@ -169,40 +169,7 @@ const CalculatorSection = () => {
               </h3>
 
               <div className="space-y-8">
-                {/* Average Monthly Bill */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Average Monthly Electricity Bill
-                  </label>
-                  <div className="flex items-center">
-                    <span className="text-gray-500 mr-2">₹</span>
-                    <Input
-                      type="number"
-                      min="100"
-                      max="5000"
-                      value={monthlyBill}
-                      onChange={(e) => handleMonthlyBillChange(Number(e.target.value))}
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="mt-2">
-                    <Slider
-                      value={[monthlyBill]}
-                      min={100}
-                      max={5000}
-                      step={100}
-                      className="w-full"
-                      onValueChange={(value) => handleMonthlyBillChange(value[0])}
-                    />
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
-                      <span>₹100</span>
-                      <span>₹2,500</span>
-                      <span>₹5,000</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Solar System Size Input - NEW */}
+                {/* Solar System Size Input - MOVED TO FIRST POSITION */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Solar System Size (kW)
@@ -231,6 +198,39 @@ const CalculatorSection = () => {
                       <span>1 kW</span>
                       <span>5 kW</span>
                       <span>9 kW</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Average Monthly Bill - MOVED TO SECOND POSITION */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Your Average Monthly Electricity Bill
+                  </label>
+                  <div className="flex items-center">
+                    <span className="text-gray-500 mr-2">₹</span>
+                    <Input
+                      type="number"
+                      min="100"
+                      max="6000"
+                      value={monthlyBill}
+                      onChange={(e) => handleMonthlyBillChange(Number(e.target.value))}
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="mt-2">
+                    <Slider
+                      value={[monthlyBill]}
+                      min={100}
+                      max={6000}
+                      step={100}
+                      className="w-full"
+                      onValueChange={(value) => handleMonthlyBillChange(value[0])}
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>₹100</span>
+                      <span>₹3,000</span>
+                      <span>₹6,000</span>
                     </div>
                   </div>
                 </div>

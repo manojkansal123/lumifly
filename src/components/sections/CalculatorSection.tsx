@@ -8,11 +8,28 @@ import { Calculator, IndianRupee, CheckCircle, ArrowRight, Lightbulb, Percent, I
 
 const CalculatorSection = () => {
   const { t } = useLanguage();
-  const [monthlyBill, setMonthlyBill] = useState<number>(1500);
   const [capacity, setCapacity] = useState<number>(3); // Default set to 3 kW
-  const [manualCapacity, setManualCapacity] = useState<boolean>(false);
+  const [monthlyBill, setMonthlyBill] = useState<number>(0); // Will be calculated in useEffect
+  const [manualCapacity, setManualCapacity] = useState<boolean>(true); // Initialize as true since capacity is our primary input
   const [manualBill, setManualBill] = useState<boolean>(false);
   
+  // Initial calculation for monthly bill based on default capacity
+  useEffect(() => {
+    if (!manualBill && manualCapacity) {
+      // Calculate bill based on default capacity of 3kW
+      const unitsGenerated = 110 * capacity;
+      let calculatedBillAmount = calculateBillAmount(unitsGenerated);
+      
+      // Round to nearest 10 (changed from nearest 100)
+      calculatedBillAmount = Math.round(calculatedBillAmount / 10) * 10;
+      
+      // Ensure minimum of 100 and maximum of 6000 for the UI
+      calculatedBillAmount = Math.max(100, Math.min(calculatedBillAmount, 6000));
+      
+      setMonthlyBill(calculatedBillAmount);
+    }
+  }, []); // Empty dependency array to run only once at initialization
+
   // Effect to calculate capacity based on monthly bill
   useEffect(() => {
     if (!manualCapacity && manualBill) {
@@ -53,10 +70,10 @@ const CalculatorSection = () => {
       const unitsGenerated = 110 * capacity;
       let calculatedBillAmount = calculateBillAmount(unitsGenerated);
       
-      // Round to nearest 100
-      calculatedBillAmount = Math.round(calculatedBillAmount / 100) * 100;
+      // Round to nearest 10 (changed from nearest 100)
+      calculatedBillAmount = Math.round(calculatedBillAmount / 10) * 10;
       
-      // Ensure minimum of 100 and maximum of 6000 for the UI (increased from 5000)
+      // Ensure minimum of 100 and maximum of 6000 for the UI
       calculatedBillAmount = Math.max(100, Math.min(calculatedBillAmount, 6000));
       
       setMonthlyBill(calculatedBillAmount);

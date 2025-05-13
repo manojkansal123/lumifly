@@ -19,7 +19,7 @@ const Dashboard = () => {
       <Navbar />
       <DashboardHeader />
       
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-4 py-8 mt-16">
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Overview</h2>
           

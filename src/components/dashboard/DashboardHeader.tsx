@@ -16,13 +16,16 @@ const DashboardHeader = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    console.log("Logout clicked");
+    await logout();
     navigate("/");
   };
 
   // Get the first letter of the user's name for the avatar fallback
   const userInitial = user?.name ? user.name.charAt(0).toUpperCase() : "U";
+  
+  console.log("Current user:", user); // Debug log to see user object
 
   return (
     <div className="bg-white border-b border-gray-200 py-4 shadow-sm fixed top-0 left-0 right-0 z-10">
@@ -39,12 +42,12 @@ const DashboardHeader = () => {
                   </AvatarFallback>
                 </Avatar>
                 <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium line-clamp-1">{user?.name}</p>
-                  <p className="text-xs text-gray-500 line-clamp-1">{user?.email}</p>
+                  <p className="text-sm font-medium line-clamp-1">{user?.name || "User"}</p>
+                  <p className="text-xs text-gray-500 line-clamp-1">{user?.email || ""}</p>
                 </div>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuContent align="end" className="w-56 bg-white">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="cursor-pointer">

@@ -48,6 +48,7 @@ const SignIn = () => {
     try {
       console.log("Attempting login with:", data.email);
       const result = await login(data.email, data.password);
+      console.log("Login result:", result);
       if (result) {
         console.log("Login successful, redirecting to dashboard");
         navigate("/dashboard");
@@ -68,6 +69,12 @@ const SignIn = () => {
   };
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
+
+  // Pre-fill demo credentials for convenience
+  const fillDemoCredentials = () => {
+    form.setValue("email", "demo@lumifly.com");
+    form.setValue("password", "password");
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -170,7 +177,7 @@ const SignIn = () => {
           </Card>
           
           <div className="text-center text-sm text-gray-500">
-            <p>Demo account: demo@lumifly.com / password</p>
+            <p>Demo account: <button onClick={fillDemoCredentials} className="text-solar-orange hover:text-solar-dark">demo@lumifly.com / password</button></p>
           </div>
         </div>
       </main>

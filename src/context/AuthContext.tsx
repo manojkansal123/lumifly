@@ -28,6 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Set up auth state listener first
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log("Auth state changed:", event, session?.user?.id);
         if (session?.user) {
           const { data: profile } = await supabase
             .from('profiles')
@@ -38,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setUser({
             id: session.user.id,
             email: session.user.email || '',
-            name: profile?.full_name || 'User'
+            name: profile?.full_name || session.user.user_metadata?.full_name || 'User'
           });
           setIsAuthenticated(true);
         } else {
@@ -50,11 +51,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Then check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log("Checking existing session:", session?.user?.id);
       if (session?.user) {
         setUser({
           id: session.user.id,
           email: session.user.email || '',
-          name: session.user.user_metadata.full_name || 'User'
+          name: session.user.user_metadata?.full_name || 'User'
         });
         setIsAuthenticated(true);
       }
@@ -67,12 +69,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      console.log("Login attempt for:", email);
       const { error, data } = await supabase.auth.signInWithPassword({
         email,
         password
       });
 
       if (error) {
+        console.error("Login error:", error.message);
         toast({
           title: "Login failed",
           description: error.message || "Invalid email or password",
@@ -82,6 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data.user) {
+        console.log("Login successful for:", data.user.email);
         toast({
           title: "Welcome back!",
           description: "You've successfully signed in.",
@@ -89,6 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return true;
       }
 
+      console.log("Login failed: No user data returned");
       toast({
         title: "Login failed",
         description: "Unable to authenticate. Please try again.",
@@ -96,7 +102,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
       return false;
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Login error:", error);
       toast({
         title: "Login Error",
         description: "An unexpected error occurred. Please try again.",

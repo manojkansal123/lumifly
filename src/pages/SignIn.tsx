@@ -46,20 +46,22 @@ const SignIn = () => {
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
+      console.log("Attempting login with:", data.email);
       const result = await login(data.email, data.password);
       if (result) {
-        toast({
-          title: "Welcome back!",
-          description: "You've successfully signed in.",
-        });
+        console.log("Login successful, redirecting to dashboard");
         navigate("/dashboard");
       } else {
-        toast({
-          title: "Sign in failed",
-          description: "Invalid email or password. Please try again.",
-          variant: "destructive",
-        });
+        console.log("Login failed");
+        // The toast notification is already handled in the login function
       }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast({
+        title: "Sign in failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -102,6 +104,7 @@ const SignIn = () => {
                               placeholder="you@example.com" 
                               className="pl-10" 
                               {...field} 
+                              autoComplete="email"
                             />
                           </div>
                         </FormControl>
@@ -122,6 +125,7 @@ const SignIn = () => {
                               type={showPassword ? "text" : "password"}
                               className="pl-10"
                               {...field}
+                              autoComplete="current-password"
                             />
                             <button
                               type="button"

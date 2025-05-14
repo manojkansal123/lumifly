@@ -2,6 +2,7 @@
 import { useAuth } from "@/context/AuthContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import StatCard from "@/components/dashboard/StatCard";
 import EnergyGenerationChart from "@/components/dashboard/EnergyGenerationChart";
 import ProductsList from "@/components/dashboard/ProductsList";
@@ -16,8 +17,9 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
+      <DashboardHeader />
       
-      <main className="flex-grow container mx-auto px-4 py-8 mt-20">
+      <main className="flex-grow container mx-auto px-4 py-8 mt-16">
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Overview</h2>
           

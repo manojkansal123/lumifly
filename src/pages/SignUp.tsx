@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -25,10 +24,6 @@ const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -36,7 +31,6 @@ type FormData = z.infer<typeof formSchema>;
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { signup } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -47,7 +41,6 @@ const SignUp = () => {
       name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -56,46 +49,40 @@ const SignUp = () => {
     try {
       const result = await signup(data.name, data.email, data.password);
       if (result) {
-        toast({
-          title: "Account created!",
-          description: "You've successfully signed up for Lumifly.",
-        });
         navigate("/dashboard");
-      } else {
-        toast({
-          title: "Sign up failed",
-          description: "There was an error creating your account. Please try again.",
-          variant: "destructive",
-        });
       }
+    } catch (error) {
+      console.error("Signup error:", error);
+      toast({
+        title: "Sign up failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
-  const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-grow flex items-center justify-center bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8 my-12">
+        <div className="w-full max-w-md space-y-8 my-16">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-lumifly-navy tracking-tight">Create Your Account</h1>
-            <p className="mt-2 text-sm text-gray-600 mb-6">
+            <p className="mt-2 text-sm text-gray-600 mb-8">
               Join Lumifly solar energy program and start saving today
             </p>
           </div>
-
+          
           <Card className="shadow-lg border-solar-yellow/20">
             <CardHeader className="pb-4 space-y-1">
               <CardTitle className="text-xl font-semibold text-center">Sign Up</CardTitle>
-              <CardDescription className="text-center">
-                Enter your details to create an account
-              </CardDescription>
+              <CardDescription className="text-center">Create your account to get started</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 pt-4 pb-4">
+            <CardContent className="space-y-4 pt-4 pb-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
@@ -107,11 +94,7 @@ const SignUp = () => {
                         <FormControl>
                           <div className="relative">
                             <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                            <Input 
-                              placeholder="John Doe" 
-                              className="pl-10" 
-                              {...field} 
-                            />
+                            <Input placeholder="John Doe" className="pl-10" {...field} />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -130,8 +113,8 @@ const SignUp = () => {
                             <Input 
                               placeholder="you@example.com" 
                               className="pl-10" 
-                              {...field} 
-                              autoComplete="email"
+                              {...field}
+                              autoComplete="email" 
                             />
                           </div>
                         </FormControl>
@@ -152,6 +135,7 @@ const SignUp = () => {
                               type={showPassword ? "text" : "password"}
                               className="pl-10"
                               {...field}
+                              autoComplete="new-password"
                             />
                             <button
                               type="button"
@@ -170,49 +154,18 @@ const SignUp = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Confirm Password</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Key className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                            <Input
-                              type={showConfirmPassword ? "text" : "password"}
-                              className="pl-10"
-                              {...field}
-                            />
-                            <button
-                              type="button"
-                              onClick={toggleShowConfirmPassword}
-                              className="absolute right-3 top-3"
-                            >
-                              {showConfirmPassword ? (
-                                <EyeOff className="h-4 w-4 text-gray-400" />
-                              ) : (
-                                <Eye className="h-4 w-4 text-gray-400" />
-                              )}
-                            </button>
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-solar-yellow hover:bg-solar-orange"
                     disabled={isLoading}
                   >
-                    {isLoading ? "Creating account..." : "Create Account"}
+                    {isLoading ? "Creating Account..." : "Create Account"}
                   </Button>
                 </form>
               </Form>
             </CardContent>
-            <CardFooter className="pt-2 pb-6 px-6">
-              <div className="text-sm text-center w-full">
+            <CardFooter className="flex flex-col pt-2 pb-6 px-6">
+              <div className="text-sm text-center">
                 Already have an account?{" "}
                 <Link to="/signin" className="text-solar-orange hover:text-solar-dark font-medium">
                   Sign in

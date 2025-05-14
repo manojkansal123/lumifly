@@ -30,18 +30,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       async (event, session) => {
         console.log("Auth state changed:", event, session?.user?.id);
         if (session?.user) {
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('full_name')
-            .eq('id', session.user.id)
-            .single();
-
-          setUser({
-            id: session.user.id,
-            email: session.user.email || '',
-            name: profile?.full_name || session.user.user_metadata?.full_name || 'User'
-          });
-          setIsAuthenticated(true);
+          try {
+            const { data: profile } = await supabase
+              .from('profiles')
+              .select('full_name')
+              .eq('id', session.user.id)
+              .single();
+              
+            setUser({
+              id: session.user.id,
+              email: session.user.email || '',
+              name: profile?.full_name || session.user.user_metadata?.full_name || 'User'
+            });
+            setIsAuthenticated(true);
+          } catch (error) {
+            console.error("Error fetching profile:", error);
+          }
         } else {
           setUser(null);
           setIsAuthenticated(false);
@@ -53,18 +57,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       console.log("Checking existing session:", session?.user?.id);
       if (session?.user) {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('full_name')
-          .eq('id', session.user.id)
-          .single();
-          
-        setUser({
-          id: session.user.id,
-          email: session.user.email || '',
-          name: profile?.full_name || session.user.user_metadata?.full_name || 'User'
-        });
-        setIsAuthenticated(true);
+        try {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('full_name')
+            .eq('id', session.user.id)
+            .single();
+            
+          setUser({
+            id: session.user.id,
+            email: session.user.email || '',
+            name: profile?.full_name || session.user.user_metadata?.full_name || 'User'
+          });
+          setIsAuthenticated(true);
+        } catch (error) {
+          console.error("Error fetching profile:", error);
+        }
       }
     });
 

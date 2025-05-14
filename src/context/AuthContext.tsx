@@ -93,8 +93,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (data.user) {
         console.log("Login successful for:", data.user.email);
-        console.log("User metadata:", data.user.user_metadata);
-        
         toast({
           title: "Welcome back!",
           description: "You've successfully signed in.",

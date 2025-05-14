@@ -89,13 +89,13 @@ const SignIn = () => {
           </div>
 
           <Card className="shadow-lg border-solar-yellow/20">
-            <CardHeader>
+            <CardHeader className="pb-4 space-y-1">
               <CardTitle className="text-xl font-semibold text-center">Welcome Back</CardTitle>
               <CardDescription className="text-center">
                 Enter your credentials to access your account
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4 pt-4 pb-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
@@ -161,7 +161,7 @@ const SignIn = () => {
                 </form>
               </Form>
             </CardContent>
-            <CardFooter className="flex flex-col space-y-2">
+            <CardFooter className="flex flex-col space-y-4 pt-2 pb-6 px-6">
               <div className="text-sm text-center">
                 <Link to="#" className="text-lumifly-secondary hover:text-lumifly-tertiary">
                   Forgot your password?
@@ -176,7 +176,7 @@ const SignIn = () => {
             </CardFooter>
           </Card>
           
-          <div className="text-center text-sm text-gray-500">
+          <div className="text-center text-sm text-gray-500 mt-4">
             <p>Demo account: <button onClick={fillDemoCredentials} className="text-solar-orange hover:text-solar-dark">demo@lumifly.com / password</button></p>
           </div>
         </div>

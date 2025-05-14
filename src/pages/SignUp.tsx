@@ -89,13 +89,13 @@ const SignUp = () => {
           </div>
 
           <Card className="shadow-lg border-solar-yellow/20">
-            <CardHeader>
+            <CardHeader className="pb-4 space-y-1">
               <CardTitle className="text-xl font-semibold text-center">Sign Up</CardTitle>
               <CardDescription className="text-center">
                 Enter your details to create an account
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4 pt-4 pb-4">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
@@ -131,6 +131,7 @@ const SignUp = () => {
                               placeholder="you@example.com" 
                               className="pl-10" 
                               {...field} 
+                              autoComplete="email"
                             />
                           </div>
                         </FormControl>
@@ -210,7 +211,7 @@ const SignUp = () => {
                 </form>
               </Form>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="pt-2 pb-6 px-6">
               <div className="text-sm text-center w-full">
                 Already have an account?{" "}
                 <Link to="/signin" className="text-solar-orange hover:text-solar-dark font-medium">
